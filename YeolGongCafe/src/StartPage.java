@@ -129,5 +129,5 @@ public class StartPage {
 		btnChat.setBounds(250, 410, 300, 50);
 		btnChat.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 16));
 		panel.add(btnChat);
-	}
+	}//test
 }
