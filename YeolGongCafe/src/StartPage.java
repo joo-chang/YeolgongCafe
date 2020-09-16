@@ -130,4 +130,4 @@ public class StartPage {
 		btnChat.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 16));
 		panel.add(btnChat);
 	}
-}
+}// ¼öÁ¤ ³»¿ë
