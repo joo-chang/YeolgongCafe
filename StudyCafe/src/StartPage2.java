@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class StartPage {
+public class StartPage2 {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -23,7 +23,7 @@ public class StartPage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartPage window = new StartPage();
+					StartPage2 window = new StartPage2();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class StartPage {
 	/**
 	 * Create the application.
 	 */
-	public StartPage() {
+	public StartPage2() {
 		initialize();
 	}
 
