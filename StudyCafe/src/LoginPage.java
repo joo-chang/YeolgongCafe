@@ -47,13 +47,13 @@ public class LoginPage {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("\uC5F4\uACF5 \uC2A4\uD130\uB514 \uCE74\uD398");
+		JLabel lblNewLabel = new JLabel("¿­°ø ½ºÅÍµð Ä«Æä");
 		lblNewLabel.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(111, 40, 259, 40);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("\uB85C \uADF8 \uC778");
+		JButton btnNewButton = new JButton("·Î±×ÀÎ");
 		btnNewButton.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 17));
 		btnNewButton.setBounds(329, 107, 113, 75);
 		frame.getContentPane().add(btnNewButton);
