@@ -180,6 +180,7 @@ public class StartPage2 {
 		});
 		CreateAccountPanel.add(btnNewButton_2);
 		
+		
 		//메인gui
 		panel.setBounds(0, 0, 784, 561);
 		frame.getContentPane().add(panel);
@@ -229,4 +230,5 @@ public class StartPage2 {
 		
 		
 	}
+	//hello
 }// 수정 내용
