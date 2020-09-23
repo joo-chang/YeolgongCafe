@@ -14,10 +14,9 @@ import javax.swing.JTextField;
 
 public class LoginPage {
 
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-
+	private JFrame loginFrame;
+	JTextField textId = new JTextField();
+	JTextField textPassword = new JPasswordField();
 	/**
 	 * Launch the application.
 	 */
@@ -26,7 +25,7 @@ public class LoginPage {
 			public void run() {
 				try {
 					LoginPage window = new LoginPage();
-					window.frame.setVisible(true);
+					window.loginFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,61 +44,70 @@ public class LoginPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		loginFrame = new JFrame();
+		loginFrame.setBounds(100, 100, 800, 600);
+		loginFrame.setVisible(true);
+		loginFrame.setLocationRelativeTo(null);
+		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		loginFrame.getContentPane().setLayout(null);
 		
 		JPanel loginPanel = new JPanel(); 
 		loginPanel.setBounds(0, 0, 784, 561);
-		frame.getContentPane().add(loginPanel);
+		loginFrame.getContentPane().add(loginPanel);
 		loginPanel.setVisible(true);
 		loginPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("¿­°ø ½ºÅÍµð Ä«Æä");
-		lblNewLabel.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(200, 80, 400, 60);
-		loginPanel.add(lblNewLabel);
+		JLabel labeltext = new JLabel("¿­°ø ½ºÅÍµð Ä«Æä");
+		labeltext.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 40));
+		labeltext.setHorizontalAlignment(SwingConstants.CENTER);
+		labeltext.setBounds(200, 80, 400, 60);
+		loginPanel.add(labeltext);
 		
-		JButton btnNewButton = new JButton("·Î±×ÀÎ");
-		btnNewButton.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 17));
-		btnNewButton.setBounds(512, 208, 117, 90);
-		loginPanel.add(btnNewButton);
-		
-		JLabel lblNewLabel_1 = new JLabel("I D");
-		lblNewLabel_1.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 15));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(159, 208, 97, 29);
-		loginPanel.add(lblNewLabel_1);
-		
-		JTextField textField = new JTextField();
-		textField.setBounds(295, 208, 178, 30);
-		loginPanel.add(textField);
-		textField.setColumns(10);
-		
-		JTextField textField_1 = new JPasswordField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(295, 268, 178, 30);
-		loginPanel.add(textField_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Password");
-		lblNewLabel_1_1.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 15));
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(159, 269, 97, 27);
-		loginPanel.add(lblNewLabel_1_1);
-		
-		JButton btnNewButton_22 = new JButton("Ãë¼Ò");
-		btnNewButton_22.setBounds(300, 321, 105, 27);
-		btnNewButton_22.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("·Î±×ÀÎ");
+		btnLogin.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 17));
+		btnLogin.setBounds(512, 208, 117, 90);
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				loginFrame.setVisible(false);
+				if(textId.getText().equals("admin") && textPassword.getText().equals("admin")) {
+		               System.out.println(textId.getText());
+		               System.out.println(textPassword.getText());
+		               new SeatPage();
+		            }
+			
+			}
+		});
+		loginPanel.add(btnLogin);
+		
+		JLabel labelId = new JLabel("I D");
+		labelId.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 15));
+		labelId.setHorizontalAlignment(SwingConstants.CENTER);
+		labelId.setBounds(159, 208, 97, 29);
+		loginPanel.add(labelId);
+		
+		textId.setBounds(295, 208, 178, 30);
+		loginPanel.add(textId);
+		textId.setColumns(10);
+		
+		textPassword.setColumns(10);
+		textPassword.setBounds(295, 268, 178, 30);
+		loginPanel.add(textPassword);
+		
+		JLabel labelPassword = new JLabel("Password");
+		labelPassword.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 15));
+		labelPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPassword.setBounds(159, 269, 97, 27);
+		loginPanel.add(labelPassword);
+		
+		JButton btnCancel = new JButton("Ãë¼Ò");
+		btnCancel.setBounds(300, 321, 105, 27);
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loginFrame.setVisible(false);
 			
 			
 			}
 		});
-		loginPanel.add(btnNewButton_22);
+		loginPanel.add(btnCancel);
 	}
 }

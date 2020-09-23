@@ -11,9 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class StartPage2 {
+public class StartPage {
 
-	private JFrame frame;
+	private JFrame startFrame;
+
 	/**
 	 * Launch the application.
 	 */
@@ -21,8 +22,8 @@ public class StartPage2 {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartPage2 window = new StartPage2();
-					window.frame.setVisible(true);
+					StartPage window = new StartPage();
+					window.startFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,8 +33,9 @@ public class StartPage2 {
 
 	/**
 	 * Create the application.
+	 * 
 	 */
-	public StartPage2() {
+	public StartPage() {
 		initialize();
 	}
 
@@ -41,28 +43,25 @@ public class StartPage2 {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setVisible(false);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-			
-		JPanel panel = new JPanel(); //main
-	
+		startFrame = new JFrame();
+		startFrame.setBounds(100, 100, 800, 600);
+		startFrame.setVisible(false);
+		startFrame.setLocationRelativeTo(null);
+		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		startFrame.getContentPane().setLayout(null);
 
+		JPanel startPanel = new JPanel(); // startPanel
 
-		//메인gui
-		panel.setBounds(0, 0, 784, 561);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
+		startPanel.setBounds(0, 0, 784, 561);
+		startFrame.getContentPane().add(startPanel);
+		startPanel.setLayout(null);
+
 		JLabel titleLabel = new JLabel("열공 스터디 카페");
 		titleLabel.setBounds(200, 80, 400, 60);
 		titleLabel.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(titleLabel);
-		
+		startPanel.add(titleLabel);
+
 		JButton btnLogin = new JButton("로그인");
 		btnLogin.setBounds(250, 200, 300, 50);
 		btnLogin.setFont(new Font("휴먼엑스포", Font.PLAIN, 16));
@@ -71,33 +70,28 @@ public class StartPage2 {
 				new LoginPage();
 			}
 		});
-		panel.add(btnLogin);
-		
-		
-		JButton btnJoin = new JButton("회원가입");
-		btnJoin.setBounds(250, 270, 300, 50);
-		btnJoin.setFont(new Font("휴먼엑스포", Font.PLAIN, 16));
-		btnJoin.addActionListener(new ActionListener() {
+		startPanel.add(btnLogin);
+
+		JButton btnAccount = new JButton("회원가입");
+		btnAccount.setBounds(250, 270, 300, 50);
+		btnAccount.setFont(new Font("휴먼엑스포", Font.PLAIN, 16));
+		btnAccount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CreateAccount();
+				new CreateAccountPage();
 			}
 		});
-		panel.add(btnJoin);
-		
-		
+		startPanel.add(btnAccount);
+
 		JButton btnEnter = new JButton("입장하기");
 		btnEnter.setBounds(250, 340, 300, 50);
 		btnEnter.setFont(new Font("휴먼엑스포", Font.PLAIN, 16));
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SeatPage();
-				
+
 			}
 		});
-		panel.add(btnEnter);
-		
-		
-		
+		startPanel.add(btnEnter);
+
 	}
-	//hello
-}// 수정 내용
+}

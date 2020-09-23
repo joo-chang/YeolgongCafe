@@ -9,9 +9,7 @@ import javax.swing.JButton;
 
 public class ChatPage {
 
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JFrame chatFrame;
 
 	/**
 	 * Launch the application.
@@ -21,7 +19,7 @@ public class ChatPage {
 			public void run() {
 				try {
 					ChatPage window = new ChatPage();
-					window.frame.setVisible(true);
+					window.chatFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,34 +38,34 @@ public class ChatPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 655, 514);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		chatFrame = new JFrame();
+		chatFrame.setBounds(100, 100, 655, 514);
+		chatFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		chatFrame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(" \uC804\uCCB4 \uC811\uC18D\uC790");
-		lblNewLabel.setBounds(25, 31, 102, 18);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel labelName = new JLabel("전체 접속자");
+		labelName.setBounds(25, 31, 102, 18);
+		chatFrame.getContentPane().add(labelName);
 		
 		JList list = new JList();
 		list.setBounds(25, 53, 86, 139);
-		frame.getContentPane().add(list);
+		chatFrame.getContentPane().add(list);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(125, 31, 486, 389);
-		frame.getContentPane().add(scrollPane);
+		chatFrame.getContentPane().add(scrollPane);
 		
-		textField = new JTextField();
-		scrollPane.setViewportView(textField);
-		textField.setColumns(10);
+		JTextField textChattingScreen = new JTextField();
+		scrollPane.setViewportView(textChattingScreen);
+		textChattingScreen.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(125, 431, 386, 24);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		JTextField textSend = new JTextField("메세지를 입력하세요");
+		textSend.setBounds(125, 431, 386, 24);
+		chatFrame.getContentPane().add(textSend);
+		textSend.setColumns(10);
 		
-		JButton btnNewButton = new JButton("\uC804\uC1A1");
-		btnNewButton.setBounds(518, 430, 92, 27);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnSend = new JButton("전송");
+		btnSend.setBounds(518, 430, 92, 27);
+		chatFrame.getContentPane().add(btnSend);
 	}
 }

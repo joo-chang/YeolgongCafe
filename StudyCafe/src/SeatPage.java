@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 
 public class SeatPage {
 
-	private JFrame frame;
+	private JFrame seatFrame;
 
 	/**
 	 * Launch the application.
@@ -19,7 +19,7 @@ public class SeatPage {
 			public void run() {
 				try {
 					SeatPage window = new SeatPage();
-					window.frame.setVisible(true);
+					window.seatFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -38,215 +38,217 @@ public class SeatPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setVisible(true);
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		seatFrame = new JFrame();
+		seatFrame.setVisible(true);
+		seatFrame.setBounds(100, 100, 800, 600);
+		seatFrame.setLocationRelativeTo(null);
+		seatFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		seatFrame.getContentPane().setLayout(null);
 		
-		JPanel SeatPanel = new JPanel();
-		SeatPanel.setBounds(0, 0, 784, 561);
-		frame.getContentPane().add(SeatPanel);
-		SeatPanel.setVisible(true);
-		SeatPanel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("\uCC44\uD305\uD558\uAE30");
-		btnNewButton.setBounds(342, 463, 105, 60);
-		SeatPanel.add(btnNewButton);
+		JPanel seatPanel = new JPanel(); //seatPanel
+		seatPanel.setBounds(0, 0, 784, 561);
+		seatFrame.getContentPane().add(seatPanel);
+		seatPanel.setVisible(true);
+		seatPanel.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("\uD1F4\uC2E4\uD558\uAE30");
-		btnNewButton_1.setBounds(44, 463, 105, 60);
-		SeatPanel.add(btnNewButton_1);
+		JButton btnCheckout = new JButton("퇴실하기");
+		btnCheckout.setBounds(44, 463, 105, 60);
+		seatPanel.add(btnCheckout);
+			
+		JButton btnChat = new JButton("채팅하기");
+		btnChat.setBounds(342, 463, 105, 60);
+		seatPanel.add(btnChat);
 		
-		JButton btnNewButton_2 = new JButton("\uC2DC\uAC04\uCDA9\uC804");
-		btnNewButton_2.setBounds(631, 463, 105, 60);
-		SeatPanel.add(btnNewButton_2);
+		JButton btnCharge = new JButton("시간충전");
+		btnCharge.setBounds(631, 463, 105, 60);
+		seatPanel.add(btnCharge);
 		
-		JButton btnNewButton_3 = new JButton("뒤로가기");
-		btnNewButton_3.setBounds(663, 12, 105, 30);
-		btnNewButton_3.addActionListener(new ActionListener() {
+		JButton btnBack = new JButton("뒤로가기");
+		btnBack.setBounds(663, 12, 105, 30);
+		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
+				seatFrame.setVisible(false);
 			}
 		});
-		SeatPanel.add(btnNewButton_3);
+		seatPanel.add(btnBack);
 		
-		JLabel lblNewLabel = new JLabel("좌석을 선택해주세요.");
-		lblNewLabel.setBounds(475, 16, 204, 23);
-		SeatPanel.add(lblNewLabel);
+		JLabel labelText = new JLabel("좌석을 선택해주세요.");
+		labelText.setBounds(475, 16, 204, 23);
+		seatPanel.add(labelText);
 		
-		JLabel lblNewLabel_1 = new JLabel("사용자");
-		lblNewLabel_1.setBounds(57, 18, 62, 18);
-		SeatPanel.add(lblNewLabel_1);
+		JLabel labelUsername = new JLabel("사용자");
+		labelUsername.setBounds(57, 18, 62, 18);
+		seatPanel.add(labelUsername);
 		
 		JLabel Nim = new JLabel("님");
 		Nim.setBounds(107, 18, 62, 18);
-		SeatPanel.add(Nim);
+		seatPanel.add(Nim);
 		
-		//Seat
-		JButton Seat1 = new JButton("");
-		Seat1.addActionListener(new ActionListener() {
+		//btnseat
+		JButton btnSeat1 = new JButton("");
+		btnSeat1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Seat1.setBounds(56, 100, 29, 27);
-		SeatPanel.add(Seat1);
+		btnSeat1.setBounds(56, 100, 29, 27);
+		seatPanel.add(btnSeat1);
 		
-		JButton Seat2 = new JButton("");
-		Seat2.addActionListener(new ActionListener() {
+		JButton btnSeat2 = new JButton("");
+		btnSeat2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Seat2.setBounds(56,160, 29, 27);
-		SeatPanel.add(Seat2);
+		btnSeat2.setBounds(56,160, 29, 27);
+		seatPanel.add(btnSeat2);
 		
-		JButton Seat3 = new JButton("");
-		Seat3.addActionListener(new ActionListener() {
+		JButton btnSeat3 = new JButton("");
+		btnSeat3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Seat3.setBounds(56,215, 29, 27);
-		SeatPanel.add(Seat3);
+		btnSeat3.setBounds(56,215, 29, 27);
+		seatPanel.add(btnSeat3);
 		
-		JButton Seat4 = new JButton("");
-		Seat4.addActionListener(new ActionListener() {
+		JButton btnSeat4 = new JButton("");
+		btnSeat4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Seat4.setBounds(56,270, 29, 27);
-		SeatPanel.add(Seat4);
+		btnSeat4.setBounds(56,270, 29, 27);
+		seatPanel.add(btnSeat4);
 		
-		JButton Seat5 = new JButton("");
-		Seat5.addActionListener(new ActionListener() {
+		JButton btnSeat5 = new JButton("");
+		btnSeat5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		Seat5.setBounds(56,325, 29, 27);
-		SeatPanel.add(Seat5);
+		btnSeat5.setBounds(56,325, 29, 27);
+		seatPanel.add(btnSeat5);
 		
-		JButton button = new JButton("");
-		button.setBounds(222, 100, 29, 27);
-		SeatPanel.add(button);
+		JButton btnSeat6 = new JButton("");
+		btnSeat6.setBounds(222, 100, 29, 27);
+		seatPanel.add(btnSeat6);
 		
-		JButton button_1 = new JButton("");
-		button_1.setBounds(222, 160, 29, 27);
-		SeatPanel.add(button_1);
+		JButton btnSeat7 = new JButton("");
+		btnSeat7.setBounds(222, 160, 29, 27);
+		seatPanel.add(btnSeat7);
 		
-		JButton button_2 = new JButton("");
-		button_2.setBounds(222, 215, 29, 27);
-		SeatPanel.add(button_2);
+		JButton btnSeat8 = new JButton("");
+		btnSeat8.setBounds(222, 215, 29, 27);
+		seatPanel.add(btnSeat8);
 		
-		JButton button_3 = new JButton("");
-		button_3.setBounds(222, 270, 29, 27);
-		SeatPanel.add(button_3);
+		JButton btnSeat9 = new JButton("");
+		btnSeat9.setBounds(222, 270, 29, 27);
+		seatPanel.add(btnSeat9);
 		
-		JButton button_4 = new JButton("");
-		button_4.setBounds(222, 325, 29, 27);
-		SeatPanel.add(button_4);
+		JButton btnSeat10 = new JButton("");
+		btnSeat10.setBounds(222, 325, 29, 27);
+		seatPanel.add(btnSeat10);
 		
-		JButton button_5 = new JButton("");
-		button_5.setBounds(265, 100, 29, 27);
-		SeatPanel.add(button_5);
+		JButton btnSeat11 = new JButton("");
+		btnSeat11.setBounds(265, 100, 29, 27);
+		seatPanel.add(btnSeat11);
 		
-		JButton button_6 = new JButton("");
-		button_6.setBounds(265, 160, 29, 27);
-		SeatPanel.add(button_6);
+		JButton btnSeat12 = new JButton("");
+		btnSeat12.setBounds(265, 160, 29, 27);
+		seatPanel.add(btnSeat12);
 		
-		JButton button_7 = new JButton("");
-		button_7.setBounds(265, 215, 29, 27);
-		SeatPanel.add(button_7);
+		JButton btnSeat13 = new JButton("");
+		btnSeat13.setBounds(265, 215, 29, 27);
+		seatPanel.add(btnSeat13);
 		
-		JButton button_8 = new JButton("");
-		button_8.setBounds(265, 270, 29, 27);
-		SeatPanel.add(button_8);
+		JButton btnSeat14 = new JButton("");
+		btnSeat14.setBounds(265, 270, 29, 27);
+		seatPanel.add(btnSeat14);
 		
-		JButton button_9 = new JButton("");
-		button_9.setBounds(265, 325, 29, 27);
-		SeatPanel.add(button_9);
+		JButton btnSeat15 = new JButton("");
+		btnSeat15.setBounds(265, 325, 29, 27);
+		seatPanel.add(btnSeat15);
 		
-		JButton button_10 = new JButton("");
-		button_10.setBounds(396, 100, 29, 27);
-		SeatPanel.add(button_10);
+		JButton btnSeat16 = new JButton("");
+		btnSeat16.setBounds(396, 100, 29, 27);
+		seatPanel.add(btnSeat16);
 		
-		JButton button_11 = new JButton("");
-		button_11.setBounds(441, 100, 29, 27);
-		SeatPanel.add(button_11);
+		JButton btnSeat17 = new JButton("");
+		btnSeat17.setBounds(441, 100, 29, 27);
+		seatPanel.add(btnSeat17);
 		
-		JButton button_12 = new JButton("");
-		button_12.setBounds(488, 100, 29, 27);
-		SeatPanel.add(button_12);
+		JButton btnSeat18 = new JButton("");
+		btnSeat18.setBounds(488, 100, 29, 27);
+		seatPanel.add(btnSeat18);
 		
-		JButton button_13 = new JButton("");
-		button_13.setBounds(537, 100, 29, 27);
-		SeatPanel.add(button_13);
+		JButton btnSeat19 = new JButton("");
+		btnSeat19.setBounds(537, 100, 29, 27);
+		seatPanel.add(btnSeat19);
 		
-		JButton button_14 = new JButton("");
-		button_14.setBounds(396, 160, 29, 27);
-		SeatPanel.add(button_14);
+		JButton btnSeat20 = new JButton("");
+		btnSeat20.setBounds(396, 160, 29, 27);
+		seatPanel.add(btnSeat20);
 		
-		JButton button_15 = new JButton("");
-		button_15.setBounds(441, 160, 29, 27);
-		SeatPanel.add(button_15);
+		JButton btnSeat21 = new JButton("");
+		btnSeat21.setBounds(441, 160, 29, 27);
+		seatPanel.add(btnSeat21);
 		
-		JButton button_16 = new JButton("");
-		button_16.setBounds(488, 160, 29, 27);
-		SeatPanel.add(button_16);
+		JButton btnSeat22 = new JButton("");
+		btnSeat22.setBounds(488, 160, 29, 27);
+		seatPanel.add(btnSeat22);
 		
-		JButton button_17 = new JButton("");
-		button_17.setBounds(537, 160, 29, 27);
-		SeatPanel.add(button_17);
+		JButton btnSeat23 = new JButton("");
+		btnSeat23.setBounds(537, 160, 29, 27);
+		seatPanel.add(btnSeat23);
 		
-		JButton button_18 = new JButton("");
-		button_18.setBounds(396, 270, 29, 27);
-		SeatPanel.add(button_18);
+		JButton btnSeat24 = new JButton("");
+		btnSeat24.setBounds(396, 270, 29, 27);
+		seatPanel.add(btnSeat24);
 		
-		JButton button_19 = new JButton("");
-		button_19.setBounds(441, 270, 29, 27);
-		SeatPanel.add(button_19);
+		JButton btnSeat25 = new JButton("");
+		btnSeat25.setBounds(441, 270, 29, 27);
+		seatPanel.add(btnSeat25);
 		
-		JButton button_20 = new JButton("");
-		button_20.setBounds(488, 270, 29, 27);
-		SeatPanel.add(button_20);
+		JButton btnSeat26 = new JButton("");
+		btnSeat26.setBounds(488, 270, 29, 27);
+		seatPanel.add(btnSeat26);
 		
-		JButton button_21 = new JButton("");
-		button_21.setBounds(537, 270, 29, 27);
-		SeatPanel.add(button_21);
+		JButton btnSeat27 = new JButton("");
+		btnSeat27.setBounds(537, 270, 29, 27);
+		seatPanel.add(btnSeat27);
 		
-		JButton button_22 = new JButton("");
-		button_22.setBounds(396, 325, 29, 27);
-		SeatPanel.add(button_22);
+		JButton btnSeat28 = new JButton("");
+		btnSeat28.setBounds(396, 325, 29, 27);
+		seatPanel.add(btnSeat28);
 		
-		JButton button_23 = new JButton("");
-		button_23.setBounds(441, 325, 29, 27);
-		SeatPanel.add(button_23);
+		JButton btnSeat29 = new JButton("");
+		btnSeat29.setBounds(441, 325, 29, 27);
+		seatPanel.add(btnSeat29);
 		
-		JButton button_24 = new JButton("");
-		button_24.setBounds(488, 325, 29, 27);
-		SeatPanel.add(button_24);
+		JButton btnSeat30 = new JButton("");
+		btnSeat30.setBounds(488, 325, 29, 27);
+		seatPanel.add(btnSeat30);
 		
-		JButton button_25 = new JButton("");
-		button_25.setBounds(537, 325, 29, 27);
-		SeatPanel.add(button_25);
+		JButton btnSeat31 = new JButton("");
+		btnSeat31.setBounds(537, 325, 29, 27);
+		seatPanel.add(btnSeat31);
 		
-		JButton button_26 = new JButton("");
-		button_26.setBounds(663, 100, 29, 27);
-		SeatPanel.add(button_26);
+		JButton btnSeat32 = new JButton("");
+		btnSeat32.setBounds(663, 100, 29, 27);
+		seatPanel.add(btnSeat32);
 		
-		JButton button_27 = new JButton("");
-		button_27.setBounds(663, 160, 29, 27);
-		SeatPanel.add(button_27);
+		JButton btnSeat33 = new JButton("");
+		btnSeat33.setBounds(663, 160, 29, 27);
+		seatPanel.add(btnSeat33);
 		
-		JButton button_28 = new JButton("");
-		button_28.setBounds(663, 215, 29, 27);
-		SeatPanel.add(button_28);
+		JButton btnSeat34 = new JButton("");
+		btnSeat34.setBounds(663, 215, 29, 27);
+		seatPanel.add(btnSeat34);
 		
-		JButton button_29 = new JButton("");
-		button_29.setBounds(663, 270, 29, 27);
-		SeatPanel.add(button_29);
+		JButton btnSeat35 = new JButton("");
+		btnSeat35.setBounds(663, 270, 29, 27);
+		seatPanel.add(btnSeat35);
 		
-		JButton button_30 = new JButton("");
-		button_30.setBounds(663, 325, 29, 27);
-		SeatPanel.add(button_30);
+		JButton btnSeat36 = new JButton("");
+		btnSeat36.setBounds(663, 325, 29, 27);
+		seatPanel.add(btnSeat36);
 		
 		
 	}
