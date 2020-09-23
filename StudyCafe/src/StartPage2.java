@@ -49,58 +49,8 @@ public class StartPage2 {
 		frame.getContentPane().setLayout(null);
 			
 		JPanel panel = new JPanel(); //main
-		JPanel loginPanel = new JPanel(); //long in
 		JPanel CreateAccountPanel = new JPanel(); //Account
-		
-		//·Î±×ÀÎ gui
-		loginPanel.setBounds(0, 0, 784, 561);
-		frame.getContentPane().add(loginPanel);
-		loginPanel.setVisible(false);
-		loginPanel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("¿­°ø ½ºÅÍµð Ä«Æä");
-		lblNewLabel.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(200, 80, 400, 60);
-		loginPanel.add(lblNewLabel);
-		
-		JButton btnNewButton = new JButton("·Î±×ÀÎ");
-		btnNewButton.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 17));
-		btnNewButton.setBounds(512, 208, 117, 90);
-		loginPanel.add(btnNewButton);
-		
-		JLabel lblNewLabel_1 = new JLabel("I D");
-		lblNewLabel_1.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 15));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(159, 208, 97, 29);
-		loginPanel.add(lblNewLabel_1);
-		
-		JTextField textField = new JTextField();
-		textField.setBounds(295, 208, 178, 30);
-		loginPanel.add(textField);
-		textField.setColumns(10);
-		
-		JTextField textField_1 = new JPasswordField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(295, 268, 178, 30);
-		loginPanel.add(textField_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Password");
-		lblNewLabel_1_1.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 15));
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(159, 269, 97, 27);
-		loginPanel.add(lblNewLabel_1_1);
-		
-		JButton btnNewButton_22 = new JButton("Ãë¼Ò");
-		btnNewButton_22.setBounds(300, 321, 105, 27);
-		btnNewButton_22.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loginPanel.setVisible(false);
-				panel.setVisible(true);
-			
-			}
-		});
-		loginPanel.add(btnNewButton_22);
+	
 		
 		//È¸¿ø°¡ÀÔ gui
 		CreateAccountPanel.setBounds(0, 0, 784, 561);
@@ -196,8 +146,7 @@ public class StartPage2 {
 		btnLogin.setFont(new Font("ÈÞ¸Õ¿¢½ºÆ÷", Font.PLAIN, 16));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
-				loginPanel.setVisible(true);
+				new LoginPage();
 			}
 		});
 		panel.add(btnLogin);
