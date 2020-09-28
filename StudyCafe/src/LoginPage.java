@@ -1,16 +1,16 @@
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class LoginPage {
 
@@ -20,6 +20,8 @@ public class LoginPage {
 	/**
 	 * Launch the application.
 	 */
+	ArrayList<Member> members = new ArrayList<>(); 
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,6 +39,8 @@ public class LoginPage {
 	 * Create the application.
 	 */
 	public LoginPage() {
+		members.add(new Member("관리자", "admin","admin", "991025","admin@admin"));
+		members.add(new Member("박윤영", "dbsdud1025","dkssud12", "991025","dbsdud1025@naver.com"));
 		initialize();
 	}
 
@@ -44,6 +48,7 @@ public class LoginPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		loginFrame = new JFrame();
 		loginFrame.setBounds(100, 100, 800, 600);
 		loginFrame.setVisible(true);
@@ -69,12 +74,11 @@ public class LoginPage {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginFrame.setVisible(false);
-				if(textId.getText().equals("admin") && textPassword.getText().equals("admin")) {
-		               System.out.println(textId.getText());
-		               System.out.println(textPassword.getText());
-		               new SeatPage();
-		            }
-			
+				
+			    Member member = FindById(textId.getText());
+				if (textPassword.getText().equals(member.getPw())) {
+					new SeatPage();				
+				}
 			}
 		});
 		loginPanel.add(btnLogin);
@@ -110,4 +114,12 @@ public class LoginPage {
 		});
 		loginPanel.add(btnCancel);
 	}
+	private Member FindById(String id) {
+        for(Member member : members) {
+            if(member.getId().equals(id)) {
+                return member;
+            }
+        }
+        return null;
+    }
 }

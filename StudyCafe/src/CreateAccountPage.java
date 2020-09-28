@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ public class CreateAccountPage {
 	/**
 	 * Launch the application.
 	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,9 +75,9 @@ public class CreateAccountPage {
 		labelBirth.setBounds(262, 289, 62, 18);
 		createAccountPanel.add(labelBirth);
 		
-		JLabel labelPhone = new JLabel("핸드폰 번호");
-		labelPhone.setBounds(262, 345, 98, 18);
-		createAccountPanel.add(labelPhone);
+		JLabel labelEmail = new JLabel("email");
+		labelEmail.setBounds(262, 345, 98, 18);
+		createAccountPanel.add(labelEmail);
 		
 		JLabel labelAccount = new JLabel("회원가입");
 		labelAccount.setFont(new Font("휴먼엑스포", Font.PLAIN, 30));
@@ -83,12 +85,12 @@ public class CreateAccountPage {
 		labelAccount.setBounds(303, 34, 168, 44);
 		createAccountPanel.add(labelAccount);
 		
-		JTextField textName = new JTextField("이름");
+		JTextField textName = new JTextField();
 		textName.setBounds(355, 108, 116, 24);
 		createAccountPanel.add(textName);
 		textName.setColumns(10);
 		
-		JTextField textId = new JTextField("id");
+		JTextField textId = new JTextField();
 		textId.setBounds(355, 166, 116, 24);
 		createAccountPanel.add(textId);
 		textId.setColumns(10);
@@ -96,18 +98,22 @@ public class CreateAccountPage {
 		JButton btnIdCheck = new JButton("중복확인"); 
 		btnIdCheck.setBounds(493, 165, 105, 27);
 		createAccountPanel.add(btnIdCheck);
+		btnIdCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
-		JTextField textPassword = new JTextField("password");
+		JTextField textPassword = new JTextField();
 		textPassword.setBounds(355, 226, 116, 24);
 		createAccountPanel.add(textPassword);
 		textPassword.setColumns(10);
 		
-		JTextField textBirth = new JTextField("생년월일");
+		JTextField textBirth = new JTextField();
 		textBirth.setBounds(355, 286, 116, 24);
 		createAccountPanel.add(textBirth);
 		textBirth.setColumns(10);
 		
-		JTextField textEmail = new JTextField("e-mail");
+		JTextField textEmail = new JTextField();
 		textEmail.setBounds(355, 342, 167, 24);
 		createAccountPanel.add(textEmail);
 		textEmail.setColumns(10);
@@ -115,6 +121,13 @@ public class CreateAccountPage {
 		JButton btnJoin = new JButton("가입하기");
 		btnJoin.setBounds(417, 411, 105, 27);
 		createAccountPanel.add(btnJoin);
+		btnJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginPage().members.add(new Member(textName.getText(),textId.getText(),textPassword.getText(),textBirth.getText(),textEmail.getText()));
+				creatAccountFrame.setVisible(false);
+			}
+		});
+		
 		
 		JButton btnCancel = new JButton("취소");
 		btnCancel.setBounds(255, 411, 105, 27);
