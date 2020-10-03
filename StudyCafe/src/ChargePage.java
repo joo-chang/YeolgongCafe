@@ -50,41 +50,41 @@ public class ChargePage extends JFrame {
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblNewLabel_1 = new JLabel("2 \uC2DC\uAC04");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(130, 150, 75, 30);
-		contentPane.add(lblNewLabel_1);
+		JLabel timeLabel2H = new JLabel("2 \uC2DC\uAC04");
+		timeLabel2H.setHorizontalAlignment(SwingConstants.CENTER);
+		timeLabel2H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		timeLabel2H.setBounds(130, 150, 75, 30);
+		contentPane.add(timeLabel2H);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("4 \uC2DC\uAC04");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(130, 210, 75, 30);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel timeLabel4H = new JLabel("4 \uC2DC\uAC04");
+		timeLabel4H.setHorizontalAlignment(SwingConstants.CENTER);
+		timeLabel4H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		timeLabel4H.setBounds(130, 210, 75, 30);
+		contentPane.add(timeLabel4H);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("6 \uC2DC\uAC04");
-		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_2.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_2.setBounds(130, 270, 75, 30);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel timeLabel6H = new JLabel("6 \uC2DC\uAC04");
+		timeLabel6H.setHorizontalAlignment(SwingConstants.CENTER);
+		timeLabel6H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		timeLabel6H.setBounds(130, 270, 75, 30);
+		contentPane.add(timeLabel6H);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("24 \uC2DC\uAC04");
-		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_3.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_3.setBounds(130, 330, 75, 30);
-		contentPane.add(lblNewLabel_1_3);
+		JLabel timeLabel24H = new JLabel("24 \uC2DC\uAC04");
+		timeLabel24H.setHorizontalAlignment(SwingConstants.CENTER);
+		timeLabel24H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		timeLabel24H.setBounds(130, 330, 75, 30);
+		contentPane.add(timeLabel24H);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("30 \uC77C\uAD8C");
-		lblNewLabel_1_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_4.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_4.setBounds(130, 390, 75, 30);
-		contentPane.add(lblNewLabel_1_4);
+		JLabel timeLabel30D = new JLabel("30 \uC77C\uAD8C");
+		timeLabel30D.setHorizontalAlignment(SwingConstants.CENTER);
+		timeLabel30D.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		timeLabel30D.setBounds(130, 390, 75, 30);
+		contentPane.add(timeLabel30D);
 		
-		JLabel lblNewLabel_1_5 = new JLabel("3,000\uC6D0");
-		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_5.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_5.setBounds(274, 150, 100, 30);
-		contentPane.add(lblNewLabel_1_5);
+		JLabel costLabel1 = new JLabel("3,000\uC6D0");
+		costLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
+		costLabel1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		costLabel1.setBounds(274, 150, 100, 30);
+		contentPane.add(costLabel1);
 		
 		JLabel lblNewLabel_1_6 = new JLabel("5,000\uC6D0");
 		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.RIGHT);
