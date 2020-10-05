@@ -15,9 +15,9 @@ public class DB {
 	public boolean flag = false;
 	public String name ;
 	public DB() {
-		String url="jdbc:mysql://localhost:3306/javaproject?characterEncoding=UTF-8&serverTimezone=UTC";  
-		String user="yeongbin";
-		String password="anyang605";
+		String url="jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";  
+		String user="studycafe";
+		String password="tntjr123emd";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");  //1. Class.forNmae으로 Driver 연결
 			conn=DriverManager.getConnection(url, user, password); //3. DriverManager으로 Connection멤버변수를 받아 연동
