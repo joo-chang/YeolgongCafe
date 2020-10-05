@@ -129,13 +129,8 @@ public class CreateAccountPage {
 			public void actionPerformed(ActionEvent e) {
 //				array.members.add(new Member(textName.getText(), textId.getText(), textPassword.getText(),
 //						textBirth.getText(), textEmail.getText()));
-				Ex ex = new Ex();
-				ex.setName(textName.getText());
-				ex.setId(textId.getText());
-				ex.setPassword(textPassword.getText());
-				ex.setBirthday(textBirth.getText());
-				ex.setEmail(textEmail.getText());
 				DB db = new DB();
+				Ex ex = new Ex(textName.getText(), textId.getText(), textPassword.getText(),textBirth.getText(), textEmail.getText());
 				db.insert(ex);
 				JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
 				creatAccountFrame.setVisible(false);

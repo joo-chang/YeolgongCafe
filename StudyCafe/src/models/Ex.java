@@ -51,6 +51,15 @@ public class Ex {
 		this.birthday = birthday;
 	}
 
+	public Ex(String name, String id, String password, String email, String birthday) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.password = password;
+		this.email = email;
+		this.birthday = birthday;
+	}
+
 
 
 	
