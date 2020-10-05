@@ -68,36 +68,6 @@ public class LoginPage {
 		labeltext.setBounds(200, 80, 400, 60);
 		loginPanel.add(labeltext);
 
-		JButton btnLogin = new JButton("로그인");
-		btnLogin.setFont(new Font("휴먼엑스포", Font.PLAIN, 17));
-		btnLogin.setBounds(512, 208, 117, 90);
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-//				for (int i = 0; i < array.members.size(); i++) {
-//					if (textId.getText().equals(array.members.get(i).getId())
-//							&& textPassword.getText().equals(array.members.get(i).getPw())) {
-//						new SeatPage();
-//					}
-//
-//				}
-				DB db = new DB();
-				db.check(textId.getText(),textPassword.getText());
-				
-				if(db.flag) {
-					System.out.println("성공");
-					new SeatPage(db.name);
-					loginFrame.setVisible(false);
-				}else {
-					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");
-					System.out.println("로그인 실패");
-				}
-				
-				
-			}
-		});
-		loginPanel.add(btnLogin);
-
 		JLabel labelId = new JLabel("I D");
 		labelId.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
 		labelId.setHorizontalAlignment(SwingConstants.CENTER);
@@ -119,13 +89,44 @@ public class LoginPage {
 		loginPanel.add(labelPassword);
 
 		JButton btnCancel = new JButton("취소");
-		btnCancel.setBounds(300, 321, 105, 27);
+		btnCancel.setBounds(300, 342, 105, 27);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginFrame.setVisible(false);
 
 			}
 		});
+		
+		JLabel check = new JLabel("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+		check.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
+		check.setHorizontalAlignment(SwingConstants.CENTER);
+		check.setVisible(false);
+		check.setBounds(245, 305, 400, 30);
+		loginPanel.add(check);
+		
 		loginPanel.add(btnCancel);
+		JButton btnLogin = new JButton("로그인");
+		btnLogin.setFont(new Font("휴먼엑스포", Font.PLAIN, 17));
+		btnLogin.setBounds(512, 208, 117, 90);
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DB db = new DB();
+				db.check(textId.getText(),textPassword.getText());
+				
+				if(db.flag) {
+					System.out.println("성공");
+					new SeatPage(db.name);
+					loginFrame.setVisible(false);
+				}else {
+					//JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");
+					check.setVisible(true);
+					
+					System.out.println("로그인 실패");
+				}
+				
+				
+			}
+		});
+		loginPanel.add(btnLogin);
 	}
 }
