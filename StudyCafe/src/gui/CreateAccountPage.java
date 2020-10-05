@@ -1,18 +1,23 @@
+package gui;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import database.DB;
+import models.Ex;
+
 import javax.swing.JButton;
 
 public class CreateAccountPage {
 
 	private JFrame creatAccountFrame;
-	Array array = new Array();
 
 	/**
 	 * Launch the application.
@@ -122,8 +127,17 @@ public class CreateAccountPage {
 		createAccountPanel.add(btnJoin);
 		btnJoin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				array.members.add(new Member(textName.getText(), textId.getText(), textPassword.getText(),
-						textBirth.getText(), textEmail.getText()));
+//				array.members.add(new Member(textName.getText(), textId.getText(), textPassword.getText(),
+//						textBirth.getText(), textEmail.getText()));
+				Ex ex = new Ex();
+				ex.setName(textName.getText());
+				ex.setId(textId.getText());
+				ex.setPassword(textPassword.getText());
+				ex.setBirthday(textBirth.getText());
+				ex.setEmail(textEmail.getText());
+				DB db = new DB();
+				db.insert(ex);
+				JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
 				creatAccountFrame.setVisible(false);
 			}
 		});

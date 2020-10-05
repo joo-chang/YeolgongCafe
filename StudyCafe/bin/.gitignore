@@ -1,4 +1,3 @@
-/Array.class
 /CreateAccountPage$1.class
 /CreateAccountPage$2.class
 /CreateAccountPage$3.class
@@ -6,5 +5,7 @@
 /LoginPage$1.class
 /LoginPage$2.class
 /LoginPage$3.class
-/ChargePage$2.class
-/ChargePage$3.class
+/gui/
+/database/
+/models/
+/DB.class

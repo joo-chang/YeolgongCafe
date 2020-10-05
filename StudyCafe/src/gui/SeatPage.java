@@ -1,7 +1,9 @@
+package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -30,14 +32,15 @@ public class SeatPage {
 	/**
 	 * Create the application.
 	 */
-	public SeatPage() {
-		initialize();
+	SeatPage() {}
+	public SeatPage(String user) {
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String user) {
 		seatFrame = new JFrame();
 		seatFrame.setVisible(true);
 		seatFrame.setBounds(100, 100, 800, 600);
@@ -73,11 +76,11 @@ public class SeatPage {
 		});
 		seatPanel.add(btnBack);
 		
-		JLabel labelText = new JLabel("좌석을 선택해주세요.");
-		labelText.setBounds(475, 16, 204, 23);
-		seatPanel.add(labelText);
+	      JLabel labelText = new JLabel("좌석을 선택해주세요.");
+	      labelText.setBounds(475, 16, 204, 23);
+	      seatPanel.add(labelText);
 		
-		JLabel labelUsername = new JLabel("사용자");
+		JLabel labelUsername = new JLabel(user);
 		labelUsername.setBounds(57, 18, 62, 18);
 		seatPanel.add(labelUsername);
 		

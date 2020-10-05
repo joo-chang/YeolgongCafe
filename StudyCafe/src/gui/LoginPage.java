@@ -1,3 +1,5 @@
+package gui;
+import java.awt.Checkbox;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -5,14 +7,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import database.DB;
+
 public class LoginPage {
 
-	Array array = new Array();
 	private JFrame loginFrame;
 	JTextField textId = new JTextField();
 	JTextField textPassword = new JPasswordField();
@@ -69,16 +73,27 @@ public class LoginPage {
 		btnLogin.setBounds(512, 208, 117, 90);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loginFrame.setVisible(false);
 
-				for (int i = 0; i < array.members.size(); i++) {
-					if (textId.getText().equals(array.members.get(i).getId())
-							&& textPassword.getText().equals(array.members.get(i).getPw())) {
-						new SeatPage();
-					}
-
+//				for (int i = 0; i < array.members.size(); i++) {
+//					if (textId.getText().equals(array.members.get(i).getId())
+//							&& textPassword.getText().equals(array.members.get(i).getPw())) {
+//						new SeatPage();
+//					}
+//
+//				}
+				DB db = new DB();
+				db.check(textId.getText(),textPassword.getText());
+				
+				if(db.flag) {
+					System.out.println("성공");
+					new SeatPage(db.name);
+					loginFrame.setVisible(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");
+					System.out.println("로그인 실패");
 				}
-
+				
+				
 			}
 		});
 		loginPanel.add(btnLogin);
