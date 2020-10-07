@@ -104,6 +104,12 @@ public class CreateAccountPage {
 		createAccountPanel.add(btnIdCheck);
 		btnIdCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DB db = new DB();
+				db.joincheck(textId.getText());
+				if(db.flag1) {
+				JOptionPane.showMessageDialog(null, "이미 가입되어 있는 ID입니다.");
+				}
+				creatAccountFrame.setVisible(false);
 			}
 		});
 
@@ -130,7 +136,7 @@ public class CreateAccountPage {
 //				array.members.add(new Member(textName.getText(), textId.getText(), textPassword.getText(),
 //						textBirth.getText(), textEmail.getText()));
 				DB db = new DB();
-				Ex ex = new Ex(textName.getText(), textId.getText(), textPassword.getText(),textBirth.getText(), textEmail.getText());
+				Ex ex = new Ex(textName.getText(), textId.getText(), textPassword.getText(), textEmail.getText(),textBirth.getText());
 				db.insert(ex);
 				JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
 				creatAccountFrame.setVisible(false);

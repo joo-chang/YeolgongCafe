@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class DB {
 	private Connection conn; // 2. Connection 객체를 생성
 	public boolean flag = false;
+	public boolean flag1  = false;
 	public String name ;
 	public DB() {
 		String url="jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";  
@@ -26,7 +27,7 @@ public class DB {
 		//	System.out.println("db연동 안 됨");
 			e.printStackTrace();
 		}
-		
+		//수석123등아ㅣㄷ만들어 db??dd
 	}
 	public void insert(Ex x) {
 		String sql ="insert into ex values(?,?,?,?,?)";
@@ -102,9 +103,34 @@ public class DB {
 			e.printStackTrace();
 		}
 
+
 		
 	}
-	
+	public void joincheck(String id) {
+		try {
+			String sql="select * from ex";
+			PreparedStatement pmt = conn.prepareStatement(sql);
+//			pmt.setString(1,id );
+			ResultSet rs=pmt.executeQuery(sql);
+			
+		while(rs.next()) {
+			if(rs.getString(2).equals(id)) {
+				flag1 = true;
+			}
+			
+		}
+				
+				
+				
+				
+		//	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 	
 	public void delete() { //회원정보 삭제
