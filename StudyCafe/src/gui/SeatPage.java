@@ -1,18 +1,21 @@
 package gui;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class SeatPage {
 
-	private JFrame seatFrame;
-
+	public JFrame seatFrame;
+	public JButton btnCheckout = new JButton("퇴실하기");
+	public JButton btnBack = new JButton("로그아웃");
+	public JButton btnCharge = new JButton("시간충전");
+	public JButton btnSales_m= new JButton("매출관리");
+	public JButton btnFee_m= new JButton("요금관리");
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +35,9 @@ public class SeatPage {
 	/**
 	 * Create the application.
 	 */
-	SeatPage() {}
+	SeatPage() {
+		
+	}
 	public SeatPage(String user) {
 		initialize(user);
 	}
@@ -40,7 +45,7 @@ public class SeatPage {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(String user) {
+	public void initialize(String user) {
 		seatFrame = new JFrame();
 		seatFrame.setVisible(true);
 		seatFrame.setBounds(100, 100, 800, 600);
@@ -55,7 +60,6 @@ public class SeatPage {
 		seatPanel.setVisible(true);
 		seatPanel.setLayout(null);
 		
-		JButton btnCheckout = new JButton("퇴실하기");
 		btnCheckout.setBounds(44, 463, 105, 60);
 		seatPanel.add(btnCheckout);
 			
@@ -63,11 +67,22 @@ public class SeatPage {
 		btnChat.setBounds(342, 463, 105, 60);
 		seatPanel.add(btnChat);
 		
-		JButton btnCharge = new JButton("시간충전");
+		btnSales_m.setBounds(44, 463, 105, 60);
+		btnSales_m.setVisible(false);
+		seatPanel.add(btnSales_m);
+		
+		btnFee_m.setBounds(631, 463, 105, 60);
+		btnFee_m.setVisible(false);
+		seatPanel.add(btnFee_m);
+		
 		btnCharge.setBounds(631, 463, 105, 60);
+		btnCharge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ChargePage(user);
+			}
+		});
 		seatPanel.add(btnCharge);
 		
-		JButton btnBack = new JButton("뒤로가기");
 		btnBack.setBounds(663, 12, 105, 30);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,17 +91,13 @@ public class SeatPage {
 		});
 		seatPanel.add(btnBack);
 		
-	      JLabel labelText = new JLabel("좌석을 선택해주세요.");
-	      labelText.setBounds(475, 16, 204, 23);
-	      seatPanel.add(labelText);
+	    JLabel labelText = new JLabel("좌석을 선택해주세요.");
+	    labelText.setBounds(475, 16, 204, 23);
+	    seatPanel.add(labelText);
 		
-		JLabel labelUsername = new JLabel(user);
+		JLabel labelUsername = new JLabel(user+"님");
 		labelUsername.setBounds(57, 18, 62, 18);
 		seatPanel.add(labelUsername);
-		
-		JLabel Nim = new JLabel("님");
-		Nim.setBounds(107, 18, 62, 18);
-		seatPanel.add(Nim);
 		
 		//btnseat
 		JButton btnSeat1 = new JButton("");

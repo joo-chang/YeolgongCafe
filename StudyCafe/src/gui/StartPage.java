@@ -51,7 +51,6 @@ public class StartPage {
 		startFrame.getContentPane().setLayout(null);
 
 		JPanel startPanel = new JPanel(); // startPanel
-
 		startPanel.setBounds(0, 0, 784, 561);
 		startFrame.getContentPane().add(startPanel);
 		startPanel.setLayout(null);

@@ -1,7 +1,4 @@
 package models;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Ex {
 
@@ -59,11 +56,4 @@ public class Ex {
 		this.email = email;
 		this.birthday = birthday;
 	}
-
-
-
-	
-
-	
-
 }

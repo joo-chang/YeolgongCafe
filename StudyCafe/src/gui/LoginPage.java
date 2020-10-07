@@ -1,5 +1,4 @@
 package gui;
-import java.awt.Checkbox;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -7,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -19,7 +17,7 @@ public class LoginPage {
 
 	private JFrame loginFrame;
 	JTextField textId = new JTextField();
-	JTextField textPassword = new JPasswordField();
+	JPasswordField textPassword = new JPasswordField();
 
 	/**
 	 * Launch the application.
@@ -93,7 +91,6 @@ public class LoginPage {
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loginFrame.setVisible(false);
-
 			}
 		});
 		
@@ -114,11 +111,16 @@ public class LoginPage {
 				db.check(textId.getText(),textPassword.getText());
 				
 				if(db.flag) {
-					System.out.println("성공");
-					new SeatPage(db.name);
+					System.out.println("로그인 성공");
+					SeatPage seatpage = new SeatPage(db.name);
+					if(textId.getText().equals("admin")&&textPassword.getText().equals("tntjr123emd")) {
+						seatpage.btnCheckout.setVisible(false);
+						seatpage.btnCharge.setVisible(false);
+						seatpage.btnFee_m.setVisible(true);
+						seatpage.btnSales_m.setVisible(true);
+					}
 					loginFrame.setVisible(false);
 				}else {
-					//JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 틀렸습니다.");
 					check.setVisible(true);
 					
 					System.out.println("로그인 실패");
