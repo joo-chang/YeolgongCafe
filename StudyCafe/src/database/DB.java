@@ -37,8 +37,8 @@ public class DB {
 			pmt.setString(1, x.getName());
 			pmt.setString(2, x.getId());
 			pmt.setString(3, x.getPassword());
-			pmt.setString(5, x.getBirthday());
-			pmt.setString(4, x.getEmail());
+			pmt.setString(4, x.getBirthday());
+			pmt.setString(5, x.getEmail());
 			pmt.executeUpdate();
 			pmt.close();
 			
