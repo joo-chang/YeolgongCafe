@@ -34,11 +34,11 @@ public class DB {
 		//String sql ="insert into member values(?,?,?,?)";
 		try {
 			PreparedStatement pmt =conn.prepareStatement(sql);
-			pmt.setString(1,x.getName());
+			pmt.setString(1, x.getName());
 			pmt.setString(2, x.getId());
 			pmt.setString(3, x.getPassword());
+			pmt.setString(5, x.getBirthday());
 			pmt.setString(4, x.getEmail());
-			pmt.setString(5,x.getBirthday());
 			pmt.executeUpdate();
 			pmt.close();
 			
@@ -117,7 +117,7 @@ public class DB {
 			if(rs.getString(2).equals(id)) {
 				flag1 = true;
 			}
-			
+		
 		}
 				
 				

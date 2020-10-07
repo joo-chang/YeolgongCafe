@@ -51,7 +51,7 @@ public class Ex {
 		this.birthday = birthday;
 	}
 
-	public Ex(String name, String id, String password, String email, String birthday) {
+	public Ex(String name, String id, String password, String birthday, String email) {
 		super();
 		this.name = name;
 		this.id = id;
