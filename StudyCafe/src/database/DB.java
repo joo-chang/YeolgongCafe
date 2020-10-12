@@ -112,7 +112,14 @@ public class DB {
 		}	
 	}
 
-	public void delete() { //회원정보 삭제
-		
+	public void payment() { 
+		String sql ="insert into payment values(?:?)";
+		try {
+			PreparedStatement pmt =conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
