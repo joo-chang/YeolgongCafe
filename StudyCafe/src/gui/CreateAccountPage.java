@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import database.DB;
-import models.Ex;
+import models.Member;
 
 import javax.swing.JButton;
 
@@ -156,9 +156,9 @@ public class CreateAccountPage {
                } else if(!duplicate){
                   JOptionPane.showMessageDialog(null, "아이디  중복 확인을 해주세요.");
                }else {
-                  Ex ex = new Ex(textName.getText(), textId.getText(), textPassword.getText(),
+                  Member member = new Member(textName.getText(), textId.getText(), textPassword.getText(),
                         textBirth.getText(), textEmail.getText());
-                  db.insert(ex);
+                  db.insert(member);
                   JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
                   creatAccountFrame.setVisible(false);
                }

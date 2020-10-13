@@ -1,12 +1,12 @@
 package database;
-import java.sql.Statement;
-import models.Ex;
-import models.SEAT;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import models.Member;
 
 public class DB {
 	private Connection conn; // 2. Connection 객체를 생성
@@ -26,15 +26,15 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
-	public void insert(Ex x) {
-		String sql ="insert into ex values(?,?,?,?,?)";
+	public void member_Insert(Member member) {
+		String sql ="insert into member values(?,?,?,?,?)";
 		try {
 			PreparedStatement pmt =conn.prepareStatement(sql);
-			pmt.setString(1, x.getName());
-			pmt.setString(2, x.getId());
-			pmt.setString(3, x.getPassword());
-			pmt.setString(4, x.getBirthday());
-			pmt.setString(5, x.getEmail());
+			pmt.setString(1, member.getName());
+			pmt.setString(2, member.getId());
+			pmt.setString(3, member.getPassword());
+			pmt.setString(4, member.getBirthday());
+			pmt.setString(5, member.getEmail());
 			pmt.executeUpdate();
 			pmt.close();
 			
@@ -44,26 +44,12 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
-	public void insert2(SEAT seat) {
-		String sql ="insert into ex values(?:?)";
-		try {
-			PreparedStatement pmt =conn.prepareStatement(sql);
-			pmt.setInt(1,seat.getSeatnumber());
-			pmt.setInt(2, seat.getPosition());
-			pmt.executeUpdate();
-			pmt.close();
+	
 			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-			
-	public void select_EX() { //매출//
+	public void select_Member() { //매출
 		try {
 			Statement stm=conn.createStatement();
-			String sql="select * from ex";
+			String sql="select * from member";
 			ResultSet rs=stm.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -78,11 +64,11 @@ public class DB {
 		
 	}
 	
-	public void check(String id,String passwd) {
+	public void check(String id,String passwd) { //아이디랑 비밀번호가 일치하는가
 		try {
 			Statement stm;
 			stm = conn.createStatement();
-			String sql = "select * from ex";
+			String sql = "select * from member";
 			ResultSet rs = stm.executeQuery(sql);
 
 			while(rs.next()) {
@@ -96,9 +82,9 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
-	public void joincheck(String id) {
+	public void joincheck(String id) { //중복체크
 		try {
-			String sql="select * from ex";
+			String sql="select * from member";
 			PreparedStatement pmt = conn.prepareStatement(sql);
 			ResultSet rs=pmt.executeQuery(sql);		
 		while(rs.next()) {

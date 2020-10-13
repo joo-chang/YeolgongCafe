@@ -1,6 +1,6 @@
 package models;
 
-public class Ex {
+public class Member {
 
 	private String name;
 	private String id;
@@ -48,7 +48,7 @@ public class Ex {
 		this.birthday = birthday;
 	}
 
-	public Ex(String name, String id, String password, String birthday, String email) {
+	public Member(String name, String id, String password, String birthday, String email) {
 		super();
 		this.name = name;
 		this.id = id;

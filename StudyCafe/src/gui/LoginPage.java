@@ -97,8 +97,8 @@ public class LoginPage {
 		JLabel check = new JLabel("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 		check.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
 		check.setHorizontalAlignment(SwingConstants.CENTER);
-		check.setVisible(false);
 		check.setBounds(245, 305, 400, 30);
+		check.setVisible(false);
 		loginPanel.add(check);
 		
 		loginPanel.add(btnCancel);
