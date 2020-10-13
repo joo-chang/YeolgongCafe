@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+
+import database.DB;
 
 public class ChargePage {
 
@@ -37,11 +39,13 @@ public class ChargePage {
 	ChargePage(){
 		
 	}
-	public ChargePage(String user) {
-		initialize(user);
+	DB db= new DB();
+	public ChargePage(String user_Id) {
+		db.select_Name(user_Id);
+		initialize(user_Id);
 	}
 	
-	private void initialize(String user) {
+	private void initialize(String user_Id) {
 		
 		chargeFrame = new JFrame();
 		chargeFrame.setBounds(100, 100, 800, 600);
@@ -121,7 +125,7 @@ public class ChargePage {
 		lblNewLabel_1_9.setBounds(274, 390, 100, 30);
 		chargePanel.add(lblNewLabel_1_9);
 		
-		JLabel lblNewLabel_1_10 = new JLabel(user+"ดิ");
+		JLabel lblNewLabel_1_10 = new JLabel(db.name+"ดิ");
 		lblNewLabel_1_10.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_10.setFont(new Font("วัฤฤ น้มฆ M", Font.PLAIN, 20));
 		lblNewLabel_1_10.setBounds(484, 229, 100, 30);

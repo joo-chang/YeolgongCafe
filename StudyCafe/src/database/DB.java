@@ -15,7 +15,8 @@ public class DB {
 	private Connection conn; // 2. Connection 객체를 생성
 	public boolean flag = false;
 	public boolean flag1  = false;
-	public String name ;
+	public String name;
+	public String id;
 	public DB() {
 		String url="jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";  
 		String user="studycafe";
@@ -69,15 +70,32 @@ public class DB {
 	
 	public void check(String id,String passwd) { //아이디랑 비밀번호가 일치하는가
 		try {
-			Statement stm;
-			stm = conn.createStatement();
+			Statement stm=conn.createStatement();
 			String sql = "select * from member";
 			ResultSet rs = stm.executeQuery(sql);
 
 			while(rs.next()) {
 				if(rs.getString(2).equals(id)&&rs.getString(3).equals(passwd)) {
-					name = rs.getString(1);
+					id = rs.getString(2);
 					flag = true;	
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void select_Name(String id) {
+		try {
+			Statement stm=conn.createStatement();
+			String sql = "select * from member";
+			ResultSet rs = stm.executeQuery(sql);
+
+			while(rs.next()) {
+				if(rs.getString(2).equals(id)) {
+					name = rs.getString(1);	
+					
+					
 				}
 			}
 			

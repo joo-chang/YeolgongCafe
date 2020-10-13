@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import database.DB;
+
 public class SeatPage {
 
 	public JFrame seatFrame;
@@ -16,6 +18,7 @@ public class SeatPage {
 	public JButton btnCharge = new JButton("시간충전");
 	public JButton btnSales_m= new JButton("매출관리");
 	public JButton btnFee_m= new JButton("요금관리");
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,14 +41,16 @@ public class SeatPage {
 	SeatPage() {
 		
 	}
-	public SeatPage(String user) {
-		initialize(user);
+	DB db= new DB();
+	public SeatPage(String user_Id) {
+		db.select_Name(user_Id);
+		initialize(user_Id);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize(String user) {
+	public void initialize(String user_Id) {
 		seatFrame = new JFrame();
 		seatFrame.setVisible(true);
 		seatFrame.setBounds(100, 100, 800, 600);
@@ -78,7 +83,7 @@ public class SeatPage {
 		btnCharge.setBounds(631, 463, 105, 60);
 		btnCharge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChargePage(user);
+				new ChargePage(user_Id);
 			}
 		});
 		seatPanel.add(btnCharge);
@@ -95,7 +100,7 @@ public class SeatPage {
 	    labelText.setBounds(475, 16, 204, 23);
 	    seatPanel.add(labelText);
 		
-		JLabel labelUsername = new JLabel(user+"님");
+		JLabel labelUsername = new JLabel(db.name+"님");
 		labelUsername.setBounds(57, 18, 62, 18);
 		seatPanel.add(labelUsername);
 		
