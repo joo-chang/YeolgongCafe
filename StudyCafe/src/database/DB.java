@@ -1,4 +1,5 @@
 package database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -98,7 +99,22 @@ public class DB {
 		}	
 	}
 
-	public void delete() { //회원정보 삭제
-		
-	}
+//	public void payment(Payment payment,Ex ex,Price price) { 
+//		String sql ="insert into payment values(?:?:?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
+//		try {
+//			PreparedStatement pmt =conn.prepareStatement(sql);
+//			pmt.setString(1,ex.getId() );
+//			pmt.setString(2, payment.getToday());
+//			pmt.setInt(3, price.getTime());
+//			pmt.executeUpdate();
+//			pmt.close();
+//			
+//			
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally {
+//			//
+//		}
+//	}
 }

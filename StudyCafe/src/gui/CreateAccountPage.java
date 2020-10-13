@@ -158,7 +158,7 @@ public class CreateAccountPage {
                }else {
                   Member member = new Member(textName.getText(), textId.getText(), textPassword.getText(),
                         textBirth.getText(), textEmail.getText());
-                  db.insert(member);
+                  db.member_Insert(member);
                   JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
                   creatAccountFrame.setVisible(false);
                }
