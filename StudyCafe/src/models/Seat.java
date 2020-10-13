@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class SEAT {
+public class Seat {
 	private int seatnumber;
 	public int getSeatnumber() {
 		return seatnumber;
@@ -21,10 +21,10 @@ public class SEAT {
 	
 BufferedReader in =new BufferedReader(new InputStreamReader(System.in));
 	
-	public SEAT() throws IOException {
+	public Seat() throws IOException {
 		System.out.println("좌석번호");
 		seatnumber=in.read();
-		System.out.println("자석위치");
+		System.out.println("좌석위치");
 		position=in.read();
 	
 	}

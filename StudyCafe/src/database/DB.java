@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import models.Member;
+import models.Payment;
+import models.Price;
 
 public class DB {
 	private Connection conn; // 2. Connection 객체를 생성
@@ -98,23 +100,23 @@ public class DB {
 			e.printStackTrace();
 		}	
 	}
-
-//	public void payment(Payment payment,Ex ex,Price price) { 
-//		String sql ="insert into payment values(?:?:?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
-//		try {
-//			PreparedStatement pmt =conn.prepareStatement(sql);
-//			pmt.setString(1,ex.getId() );
-//			pmt.setString(2, payment.getToday());
-//			pmt.setInt(3, price.getTime());
-//			pmt.executeUpdate();
-//			pmt.close();
-//			
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}finally {
-//			//
-//		}
-//	}
+	public void payment_Insert(Payment payment,Member member,Price price) { 
+		String sql ="insert into payment values(?:?:?:?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
+		try {
+			PreparedStatement pmt =conn.prepareStatement(sql);
+			pmt.setInt(1,payment.getPay_nember());
+			pmt.setString(2, payment.getM_id());
+			pmt.setInt(3,payment.getPay_day());
+			pmt.setInt(4, payment.getTime());
+			pmt.executeUpdate();
+			pmt.close();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			//
+		}
+	}
 }
