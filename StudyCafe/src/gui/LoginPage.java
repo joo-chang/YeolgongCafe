@@ -112,7 +112,7 @@ public class LoginPage {
 				
 				if(db.flag) {
 					System.out.println("로그인 성공");
-					SeatPage seatpage = new SeatPage(textId.getText());
+					SeatPage seatpage = new SeatPage(db.Id);
 					if(textId.getText().equals("admin")&&textPassword.getText().equals("tntjr123emd")) {
 						seatpage.btnCheckout.setVisible(false);
 						seatpage.btnCharge.setVisible(false);

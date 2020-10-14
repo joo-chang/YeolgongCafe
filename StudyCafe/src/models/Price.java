@@ -4,6 +4,15 @@ public class Price {
 	private int time;
 	private int price;
 	
+	public Price() {
+		
+	}
+	public Price(int time, int price) {
+		super();
+		this.time = time;
+		this.price = price;
+	}
+	
 	public int getTime() {
 		return time;
 	}
@@ -16,13 +25,7 @@ public class Price {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	public Price(int time, int price) {
-		super();
-		this.time = time;
-		this.price = price;
-	}
-	
+
 	
 
 }

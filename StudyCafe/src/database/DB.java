@@ -16,7 +16,8 @@ public class DB {
 	public boolean flag = false;
 	public boolean flag1  = false;
 	public String name;
-	public String id;
+	public String Id;
+	public int user_time;
 	public DB() {
 		String url="jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";  
 		String user="studycafe";
@@ -49,7 +50,6 @@ public class DB {
 		}
 	}
 	
-			
 	public void select_Member() { //매출
 		try {
 			Statement stm=conn.createStatement();
@@ -76,7 +76,7 @@ public class DB {
 
 			while(rs.next()) {
 				if(rs.getString(2).equals(id)&&rs.getString(3).equals(passwd)) {
-					id = rs.getString(2);
+					Id = rs.getString(2);
 					flag = true;	
 				}
 			}
@@ -85,15 +85,33 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
-	public void select_Name(String id) {
+	public void select_Name(String id) { //아이디 검색해서 이름 가져오기
 		try {
 			Statement stm=conn.createStatement();
-			String sql = "select * from member";
+			String sql = "select id, name from member";
 			ResultSet rs = stm.executeQuery(sql);
 
 			while(rs.next()) {
 				if(rs.getString(2).equals(id)) {
 					name = rs.getString(1);	
+					
+					
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void select_Usertime(String id) { //아이디 검색해서 이름 가져오기
+		try {
+			Statement stm=conn.createStatement();
+			String sql = "select * from confirmation";
+			ResultSet rs = stm.executeQuery(sql);
+
+			while(rs.next()) {
+				if(rs.getString(2).equals(id)) {
+					user_time = rs.getInt(3);	
 					
 					
 				}
@@ -118,14 +136,14 @@ public class DB {
 			e.printStackTrace();
 		}	
 	}
-	public void payment_Insert(Payment payment,Member member,Price price) { 
+	public void payment_Insert(Payment payment) { 
 		String sql ="insert into payment values(?:?:?:?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
 		try {
 			PreparedStatement pmt =conn.prepareStatement(sql);
 			pmt.setInt(1,payment.getPay_nember());
 			pmt.setString(2, payment.getM_id());
 			pmt.setInt(3,payment.getPay_day());
-			pmt.setInt(4, payment.getTime());
+			pmt.setInt(4, payment.getTime());//외래키..?db.Id처럼..
 			pmt.executeUpdate();
 			pmt.close();
 			
@@ -137,4 +155,24 @@ public class DB {
 			//
 		}
 	}
+	 public Price select_price(int num) {
+	      Price s_price = new Price();
+	      try {
+	         Statement stm = conn.createStatement();
+	         String sql = "select * from price";
+	         ResultSet rs = stm.executeQuery(sql);
+	         
+	         while (rs.next()) {
+	            if(Integer.parseInt(rs.getString(1))== num) {
+	               s_price.setTime(rs.getInt(1));
+	               s_price.setPrice(rs.getInt(2));
+	            }
+
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	      return s_price;
+
+	   }
 }
