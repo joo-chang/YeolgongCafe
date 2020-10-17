@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import models.Confirmation;
 import models.Member;
 import models.Payment;
 import models.Price;
@@ -88,13 +89,14 @@ public class DB {
 	public void select_Name(String id) { //아이디 검색해서 이름 가져오기
 		try {
 			Statement stm=conn.createStatement();
+
 			String sql = "select id, name from members";
+
 			ResultSet rs = stm.executeQuery(sql);
 
 			while(rs.next()) {
 				if(rs.getString(2).equals(id)) {
 					name = rs.getString(1);	
-					
 					
 				}
 			}
@@ -108,18 +110,16 @@ public class DB {
 			Statement stm=conn.createStatement();
 			String sql = "select * from confirmation";
 			ResultSet rs = stm.executeQuery(sql);
-
-			while(rs.next()) {
-				if(rs.getString(2).equals(id)) {
-					user_time = rs.getInt(3);	
-					
-					
-				}
+			while (rs.next()) {
+	            if(rs.getString(2).equals(id)) {
+	            	user_time=rs.getInt(3);
+	            }	
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	public void joincheck(String id) { //중복체크
 		try {
@@ -136,12 +136,62 @@ public class DB {
 			e.printStackTrace();
 		}	
 	}
+	public void c_joincheck(String id) { //중복체크
+		try {
+			String sql="select * from confirmation";
+			PreparedStatement pmt = conn.prepareStatement(sql);
+			ResultSet rs=pmt.executeQuery(sql);		
+		while(rs.next()) {
+			if(rs.getString(2).equals(id)) {
+				flag1 = true;
+			}
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	public void confirmation_Update(Confirmation confirmation) {
+		String sql ="update confirmation set user_time = ? where m_id= ?"; 
+		try {
+			PreparedStatement pmt =conn.prepareStatement(sql);
+			pmt.setInt(1, confirmation.getUser_time());
+			pmt.setString(2, confirmation.getM_id());
+			pmt.executeUpdate();
+			pmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+		}
+	}
+	public void confirmation_Insert(Confirmation confirmation) {
+		String sql ="insert into confirmation values(?, ? ,?)"; 
+		try {
+			PreparedStatement pmt =conn.prepareStatement(sql);
+			pmt.setInt(1, 1234); //인증번호 변경해야함
+			pmt.setString(2, confirmation.getM_id());
+			pmt.setInt(3, confirmation.getUser_time());
+			pmt.executeUpdate();
+			pmt.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+		}
+	}
 	public void payment_Insert(Payment payment) { 
+
 		String sql ="insert into payment(m_id,time)values(?,?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
 		try {
 			PreparedStatement pmt =conn.prepareStatement(sql);
 			pmt.setString(1,payment.getM_id() );
 			pmt.setInt(2, payment.getTime());//외래키..?db.Id처럼..
+
 			pmt.executeUpdate();
 			pmt.close();
 			

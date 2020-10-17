@@ -16,8 +16,11 @@ public class Payment {
 	public void setTime(int time) {
 		this.time = time;
 	}
-	
-	public Payment(String m_id, int time) {
+
+	public Payment(){
+		
+	}
+	public Payment( String m_id,int time) {
 		super();
 		this.m_id = m_id;
 		this.time = time;

@@ -1,36 +1,15 @@
 package gui;
-import java.awt.EventQueue;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JTextField;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class ChatPage {
 
 	private JFrame chatFrame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChatPage window = new ChatPage();
-					window.chatFrame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public ChatPage() {
 		initialize();
 	}
