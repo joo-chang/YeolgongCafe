@@ -22,7 +22,7 @@ import models.Price;
 public class ChargePage {
 	private int fee;
 	private JFrame chargeFrame;
-	JLabel fee_lb = new JLabel("총계 : " + fee + "원");
+	JLabel fee_lb = new JLabel("총     계 : " + fee + " 원");
 	Price price = new Price();
 	Confirmation get_confirmation = new Confirmation();
 	Member member = new Member();
@@ -118,22 +118,22 @@ public class ChargePage {
 		cost5_lb.setBounds(274, 390, 100, 30);
 		chargePanel.add(cost5_lb);
 
-		JLabel userName_lb = new JLabel(member.getName() + "님");
+		JLabel userName_lb = new JLabel(member.getName() + " 님");
 		userName_lb.setHorizontalAlignment(SwingConstants.LEFT);
 		userName_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		userName_lb.setBounds(484, 229, 100, 30);
 		chargePanel.add(userName_lb);
 
-		JLabel remain_lb = new JLabel("남은 시간 : ");
+		JLabel remain_lb = new JLabel("남은 시간 :");
 		remain_lb.setHorizontalAlignment(SwingConstants.LEFT);
 		remain_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		remain_lb.setBounds(484, 299, 120, 30);
 		chargePanel.add(remain_lb);
 
-		JLabel userTime_lb = new JLabel(get_confirmation.getUser_time() + "분");
+		JLabel userTime_lb = new JLabel(changeTime(get_confirmation.getUser_time()));
 		userTime_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		userTime_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		userTime_lb.setBounds(571, 299, 100, 30);
+		userTime_lb.setBounds(567, 299, 150, 30);
 		chargePanel.add(userTime_lb);
 
 		JRadioButton cost1_rdbtn = new JRadioButton("3000");
@@ -142,7 +142,7 @@ public class ChargePage {
 			public void actionPerformed(ActionEvent e) {
 				if (cost1_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost1_rdbtn.getText());
-					fee_lb.setText("총계 : " + fee + "원");
+					fee_lb.setText("총     계 : " + fee + " 원");
 					price = db.select_price(120);
 
 				}
@@ -156,7 +156,7 @@ public class ChargePage {
 			public void actionPerformed(ActionEvent e) {
 				if (cost2_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost2_rdbtn.getText());
-					fee_lb.setText("총계 : " + fee + "원");
+					fee_lb.setText("총     계 : " + fee + " 원");
 					price = db.select_price(240);
 				}
 			}
@@ -169,7 +169,7 @@ public class ChargePage {
 			public void actionPerformed(ActionEvent e) {
 				if (cost3_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost3_rdbtn.getText());
-					fee_lb.setText("총계 : " + fee + "원");
+					fee_lb.setText("총     계 : " + fee + " 원");
 					price = db.select_price(360);
 				}
 			}
@@ -182,7 +182,7 @@ public class ChargePage {
 			public void actionPerformed(ActionEvent e) {
 				if (cost4_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost4_rdbtn.getText());
-					fee_lb.setText("총계 : " + fee + "원");
+					fee_lb.setText("총     계 : " + fee + " 원");
 					price = db.select_price(1440);
 				}
 			}
@@ -195,7 +195,7 @@ public class ChargePage {
 			public void actionPerformed(ActionEvent e) {
 				if (cost5_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost5_rdbtn.getText());
-					fee_lb.setText("총계 : " + fee + "원");
+					fee_lb.setText("총     계 : " + fee + " 원");
 					price = db.select_price(7200);
 				}
 			}
@@ -209,9 +209,8 @@ public class ChargePage {
 		bg.add(cost4_rdbtn);
 		bg.add(cost5_rdbtn);
 
-		fee_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		fee_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		fee_lb.setBounds(460, 369, 180, 30);
+		fee_lb.setBounds(484, 369, 220, 30);
 		chargePanel.add(fee_lb);
 
 		if (cost1_rdbtn.isSelected()) {
@@ -267,6 +266,16 @@ public class ChargePage {
 			}
 		});
 		chargePanel.add(pay_btn);
+	}
+	
+	//분단위 시간단위로 바꾸기
+	public String changeTime(int time) {
+		int hour=0;
+		int minute=0;
 
+		hour=time/60;
+		minute =time%60;
+	
+		return hour+" 시간  "+minute+" 분";
 	}
 }
