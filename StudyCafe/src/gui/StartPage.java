@@ -97,4 +97,4 @@ public class StartPage {
 		startPanel.add(btnEnter);
 
 	}
-}
+}//

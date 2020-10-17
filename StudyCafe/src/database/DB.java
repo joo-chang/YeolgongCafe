@@ -32,7 +32,7 @@ public class DB {
 		}
 	}
 	public void member_Insert(Member member) {
-		String sql ="insert into member values(?,?,?,?,?)";
+		String sql ="insert into members values(?,?,?,?,?)";
 		try {
 			PreparedStatement pmt =conn.prepareStatement(sql);
 			pmt.setString(1, member.getName());
@@ -53,7 +53,7 @@ public class DB {
 	public void select_Member() { //매출
 		try {
 			Statement stm=conn.createStatement();
-			String sql="select * from member";
+			String sql="select * from members";
 			ResultSet rs=stm.executeQuery(sql);
 			
 			while(rs.next()) {
@@ -71,7 +71,7 @@ public class DB {
 	public void check(String id,String passwd) { //아이디랑 비밀번호가 일치하는가
 		try {
 			Statement stm=conn.createStatement();
-			String sql = "select * from member";
+			String sql = "select * from members";
 			ResultSet rs = stm.executeQuery(sql);
 
 			while(rs.next()) {
@@ -88,7 +88,7 @@ public class DB {
 	public void select_Name(String id) { //아이디 검색해서 이름 가져오기
 		try {
 			Statement stm=conn.createStatement();
-			String sql = "select id, name from member";
+			String sql = "select id, name from members";
 			ResultSet rs = stm.executeQuery(sql);
 
 			while(rs.next()) {
@@ -123,7 +123,7 @@ public class DB {
 	}
 	public void joincheck(String id) { //중복체크
 		try {
-			String sql="select * from member";
+			String sql="select * from members";
 			PreparedStatement pmt = conn.prepareStatement(sql);
 			ResultSet rs=pmt.executeQuery(sql);		
 		while(rs.next()) {
@@ -137,13 +137,11 @@ public class DB {
 		}	
 	}
 	public void payment_Insert(Payment payment) { 
-		String sql ="insert into payment values(?:?:?:?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
+		String sql ="insert into payment(m_id,time)values(?,?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
 		try {
 			PreparedStatement pmt =conn.prepareStatement(sql);
-			pmt.setInt(1,payment.getPay_nember());
-			pmt.setString(2, payment.getM_id());
-			pmt.setInt(3,payment.getPay_day());
-			pmt.setInt(4, payment.getTime());//외래키..?db.Id처럼..
+			pmt.setString(1,payment.getM_id() );
+			pmt.setInt(2, payment.getTime());//외래키..?db.Id처럼..
 			pmt.executeUpdate();
 			pmt.close();
 			

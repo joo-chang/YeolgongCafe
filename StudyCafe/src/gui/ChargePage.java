@@ -157,9 +157,7 @@ public class ChargePage {
 				if(rdbtnNewRadioButton.isSelected()){
 					fee=Integer.parseInt(rdbtnNewRadioButton.getText());
 					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
-
 		            price = db.select_price(120);
-
 				}
 			}
 		});
@@ -173,6 +171,7 @@ public class ChargePage {
 				if(rdbtnNewRadioButton_1.isSelected()){
 					fee=Integer.parseInt(rdbtnNewRadioButton_1.getText());
 					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+		            price = db.select_price(240);
 				}
 			}
 		});
@@ -185,6 +184,7 @@ public class ChargePage {
 				if(rdbtnNewRadioButton_2.isSelected()){
 					fee=Integer.parseInt(rdbtnNewRadioButton_2.getText());
 					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+		            price = db.select_price(360);
 				}
 			}
 		});
@@ -197,6 +197,7 @@ public class ChargePage {
 				if(rdbtnNewRadioButton_3.isSelected()){
 					fee=Integer.parseInt(rdbtnNewRadioButton_3.getText());
 					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+		            price = db.select_price(1440);
 				}
 			}
 		});
@@ -209,6 +210,7 @@ public class ChargePage {
 				if(rdbtnNewRadioButton_4.isSelected()){
 					fee=Integer.parseInt(rdbtnNewRadioButton_4.getText());
 					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+		            price = db.select_price(7200);
 				}
 			}
 		});
@@ -255,6 +257,7 @@ public class ChargePage {
 		chargePanel.add(btnCancel);
 	
 		JButton btnPay = new JButton("결제하기");
+		System.out.println(db.Id);
 		btnPay.setBounds(505, 454, 170, 27);
 		btnPay.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		btnPay.addActionListener(new ActionListener() {
@@ -264,7 +267,7 @@ public class ChargePage {
 				+"        결제 하시겠습니까?","Confirm",JOptionPane.YES_NO_CANCEL_OPTION);
 				if(result == JOptionPane.YES_OPTION) {//예를 누른 경우
 					price.getPrice();
-					Payment payment = new Payment(1,db.Id,201,price.getTime());
+					Payment payment = new Payment(user_Id,price.getTime());
 					db.payment_Insert(payment);
 				}
 			}
