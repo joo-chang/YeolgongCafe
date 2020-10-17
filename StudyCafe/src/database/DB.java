@@ -16,9 +16,6 @@ public class DB {
 	private Connection conn; // 2. Connection 객체를 생성
 	public boolean flag = false;
 	public boolean flag1  = false;
-	public String name;
-	public String Id;
-	public int user_time;
 	public DB() {
 		String url="jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";  
 		String user="studycafe";
@@ -27,8 +24,6 @@ public class DB {
 			Class.forName("com.mysql.cj.jdbc.Driver");  //1. Class.forNmae으로 Driver 연결
 			conn=DriverManager.getConnection(url, user, password); //3. DriverManager으로 Connection멤버변수를 받아 연동
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-		//	System.out.println("db연동 안 됨");
 			e.printStackTrace();
 		}
 	}
@@ -46,7 +41,6 @@ public class DB {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -63,13 +57,13 @@ public class DB {
 			rs.close();
 			stm.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void check(String id,String passwd) { //아이디랑 비밀번호가 일치하는가
+	public Member check(String id,String passwd) { //아이디랑 비밀번호가 일치하는가
+		Member member = new Member();
 		try {
 			Statement stm=conn.createStatement();
 			String sql = "select * from members";
@@ -77,7 +71,7 @@ public class DB {
 
 			while(rs.next()) {
 				if(rs.getString(2).equals(id)&&rs.getString(3).equals(passwd)) {
-					Id = rs.getString(2);
+					member.setId(rs.getString(2));
 					flag = true;	
 				}
 			}
@@ -85,41 +79,46 @@ public class DB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return member;
 	}
-	public void select_Name(String id) { //아이디 검색해서 이름 가져오기
-		try {
-			Statement stm=conn.createStatement();
+	public Member select_Name(String id) { //아이디 검색해서 이름 가져오기
+		Member member = new Member();
+	      try {
+	         Statement stm=conn.createStatement();
 
-			String sql = "select id, name from members";
+	         String sql = "select * from members";
 
-			ResultSet rs = stm.executeQuery(sql);
+	         ResultSet rs = stm.executeQuery(sql);
 
-			while(rs.next()) {
-				if(rs.getString(2).equals(id)) {
-					name = rs.getString(1);	
-					
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	public void select_Usertime(String id) { //아이디 검색해서 이름 가져오기
+	         while(rs.next()) {
+	            if(rs.getString(2).equals(id)) {
+	               member.setName(rs.getString(1));
+	            }
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      return member;
+	   }
+	public Confirmation select_Usertime(String id) { //아이디 검색해서 이름 가져오기
+		Confirmation confirmation = new Confirmation();
 		try {
 			Statement stm=conn.createStatement();
 			String sql = "select * from confirmation";
 			ResultSet rs = stm.executeQuery(sql);
 			while (rs.next()) {
 	            if(rs.getString(2).equals(id)) {
-	            	user_time=rs.getInt(3);
+	            	confirmation.setUser_time(rs.getInt(3));
 	            }	
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return confirmation;
 	}
 	public void joincheck(String id) { //중복체크
 		try {
@@ -132,7 +131,6 @@ public class DB {
 			}
 		}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
@@ -147,7 +145,6 @@ public class DB {
 			}
 		}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
@@ -161,7 +158,6 @@ public class DB {
 			pmt.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			
@@ -178,7 +174,6 @@ public class DB {
 			pmt.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			
@@ -197,7 +192,6 @@ public class DB {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			//

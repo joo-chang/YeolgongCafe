@@ -14,24 +14,25 @@ import javax.swing.SwingConstants;
 
 import database.DB;
 import models.Confirmation;
+import models.Member;
 import models.Payment;
 import models.Price;
 
 public class ChargePage {
-	static int fee;
-	static int time;
+	private int fee;
 	private JFrame chargeFrame;
 	JLabel lblNewLabel_1_12_1 = new JLabel("총계 : "+fee+"원");
     Price price = new Price();
-    Confirmation confirmation= new Confirmation(); 
+    Confirmation get_confirmation = new Confirmation();
+    Member member = new Member();
 	
 	ChargePage(){
 		
 	}
 	DB db= new DB();
 	public ChargePage(String user_Id) {
-		db.select_Name(user_Id);
-		db.select_Usertime(user_Id);
+		member = db.select_Name(user_Id);
+		get_confirmation = db.select_Usertime(user_Id);
 		initialize(user_Id);
 	}
 	
@@ -115,7 +116,7 @@ public class ChargePage {
 		chargePanel.add(lblNewLabel_1_9);
 		
 		
-		JLabel lblNewLabel_1_10 = new JLabel(db.name+"님");
+		JLabel lblNewLabel_1_10 = new JLabel(member.getName()+"님");
 		lblNewLabel_1_10.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_1_10.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		lblNewLabel_1_10.setBounds(484, 229, 100, 30);
@@ -127,7 +128,7 @@ public class ChargePage {
 		lblNewLabel_1_11.setBounds(484, 299, 120, 30);
 		chargePanel.add(lblNewLabel_1_11);
 		
-		JLabel lblNewLabel_1_11_1 = new JLabel(db.user_time+"분");
+		JLabel lblNewLabel_1_11_1 = new JLabel(get_confirmation.getUser_time()+"분");
 		lblNewLabel_1_11_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_11_1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		lblNewLabel_1_11_1.setBounds(571, 299, 100, 30);
@@ -143,7 +144,6 @@ public class ChargePage {
 					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
 		            price = db.select_price(120);
 
-		          //분단위 -  2 (120),  4 (240),  6 (360),  24 (1440),  120 (7200)
 				}
 			}
 		});
@@ -243,20 +243,19 @@ public class ChargePage {
 		chargePanel.add(btnCancel);
 	
 		JButton btnPay = new JButton("결제하기");
-		System.out.println(db.Id);
 		btnPay.setBounds(505, 454, 170, 27);
 		btnPay.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		btnPay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int result = JOptionPane.showConfirmDialog(null,"총 금액 : "+fee		
-				+"        결제 후 보유 시간 : "+(db.user_time+price.getTime())+"분"
+				+"        결제 후 보유 시간 : "+(get_confirmation.getUser_time()+price.getTime())+"분"
 				+"        결제 하시겠습니까?","Confirm",JOptionPane.YES_NO_CANCEL_OPTION);
 				if(result == JOptionPane.YES_OPTION) {//예를 누른 경우
 					price.getPrice();
 					Payment payment = new Payment(user_Id,price.getTime());
 					db.payment_Insert(payment);
 					db.c_joincheck(user_Id);
-					Confirmation confirmation = new Confirmation(123,user_Id,db.user_time+price.getTime());
+					Confirmation confirmation = new Confirmation(123,user_Id,get_confirmation.getUser_time()+price.getTime());
 					if(db.flag1) {
 						db.confirmation_Update(confirmation);
 					}

@@ -17,9 +17,7 @@ public class StartPage {
 
 	private JFrame startFrame;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,17 +31,12 @@ public class StartPage {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * 
-	 */
+
 	public StartPage() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		startFrame = new JFrame();
 		startFrame.setBounds(100, 100, 800, 600);

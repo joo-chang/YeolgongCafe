@@ -14,9 +14,7 @@ public class ChatPage {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		chatFrame = new JFrame();
 		chatFrame.setBounds(100, 100, 655, 514);

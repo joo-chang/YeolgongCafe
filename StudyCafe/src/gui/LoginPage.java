@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import database.DB;
+import models.Member;
 
 public class LoginPage {
 
@@ -23,9 +24,7 @@ public class LoginPage {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 
 		loginFrame = new JFrame();
@@ -89,11 +88,13 @@ public class LoginPage {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DB db = new DB();
-				db.check(textId.getText(),textPassword.getText());
+				Member member = new Member();
+				member = db.check(textId.getText(),textPassword.getText());
 				
 				if(db.flag) {
 					System.out.println("로그인 성공");
-					SeatPage seatpage = new SeatPage(db.Id);
+					System.out.println(member.getId());
+					SeatPage seatpage = new SeatPage(member.getId());
 					if(textId.getText().equals("admin")&&textPassword.getText().equals("tntjr123emd")) {
 						seatpage.btnCheckout.setVisible(false);
 						seatpage.btnCharge.setVisible(false);

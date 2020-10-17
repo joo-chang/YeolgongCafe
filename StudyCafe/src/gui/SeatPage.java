@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import database.DB;
+import models.Member;
 
 public class SeatPage {
 
@@ -19,37 +20,20 @@ public class SeatPage {
 	public JButton btnSales_m= new JButton("概免包府");
 	public JButton btnFee_m= new JButton("夸陛包府");
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SeatPage window = new SeatPage();
-					window.seatFrame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	SeatPage() {
-		
-	}
+
+	SeatPage() {}
+	
 	DB db= new DB();
+	Member member = new Member();
 	public SeatPage(String user_Id) {
-		db.select_Name(user_Id);
+		member = db.select_Name(user_Id);
+		System.out.println(member.getName());
+		System.out.println(user_Id);
 		initialize(user_Id);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	public void initialize(String user_Id) {
 		seatFrame = new JFrame();
 		seatFrame.setVisible(true);
@@ -100,7 +84,7 @@ public class SeatPage {
 	    labelText.setBounds(475, 16, 204, 23);
 	    seatPanel.add(labelText);
 		
-		JLabel labelUsername = new JLabel(db.name+"丛");
+		JLabel labelUsername = new JLabel(member.getName()+"丛");
 		labelUsername.setBounds(57, 18, 62, 18);
 		seatPanel.add(labelUsername);
 		

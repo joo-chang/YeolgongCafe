@@ -8,7 +8,7 @@ public class Member {
 	private String email;
 	private String birthday;
 	
-	
+	public Member() {}
 	public String getName() {
 		return name;
 	}
