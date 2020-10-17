@@ -1,4 +1,5 @@
 package gui;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,21 +22,23 @@ import models.Price;
 public class ChargePage {
 	private int fee;
 	private JFrame chargeFrame;
-	JLabel lblNewLabel_1_12_1 = new JLabel("총계 : "+fee+"원");
-    Price price = new Price();
-    Confirmation get_confirmation = new Confirmation();
-    Member member = new Member();
-	
-	ChargePage(){
-		
+	JLabel fee_lb = new JLabel("총계 : " + fee + "원");
+	Price price = new Price();
+	Confirmation get_confirmation = new Confirmation();
+	Member member = new Member();
+
+	ChargePage() {
+
 	}
-	DB db= new DB();
+
+	DB db = new DB();
+
 	public ChargePage(String user_Id) {
 		member = db.select_Name(user_Id);
 		get_confirmation = db.select_Usertime(user_Id);
 		initialize(user_Id);
 	}
-	
+
 	private void initialize(String user_Id) {
 		chargeFrame = new JFrame();
 		chargeFrame.setBounds(100, 100, 800, 600);
@@ -43,232 +46,227 @@ public class ChargePage {
 		chargeFrame.setLocationRelativeTo(null);
 		chargeFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		chargeFrame.getContentPane().setLayout(null);
-		
+
 		JPanel chargePanel = new JPanel();
 		chargePanel.setBounds(0, 0, 784, 561);
 		chargeFrame.getContentPane().add(chargePanel);
 		chargePanel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("시간 충전");
-		lblNewLabel.setBounds(0, 60, 784, 60);
-		lblNewLabel.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		chargePanel.add(lblNewLabel);
-		
-		JLabel timeLabel2H = new JLabel("2 \uC2DC\uAC04");
-		timeLabel2H.setHorizontalAlignment(SwingConstants.CENTER);
-		timeLabel2H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		timeLabel2H.setBounds(130, 150, 75, 30);
-		chargePanel.add(timeLabel2H);
-		
-		JLabel timeLabel4H = new JLabel("4 \uC2DC\uAC04");
-		timeLabel4H.setHorizontalAlignment(SwingConstants.CENTER);
-		timeLabel4H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		timeLabel4H.setBounds(130, 210, 75, 30);
-		chargePanel.add(timeLabel4H);
-		
-		JLabel timeLabel6H = new JLabel("6 \uC2DC\uAC04");
-		timeLabel6H.setHorizontalAlignment(SwingConstants.CENTER);
-		timeLabel6H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		timeLabel6H.setBounds(130, 270, 75, 30);
-		chargePanel.add(timeLabel6H);
-		
-		JLabel timeLabel24H = new JLabel("24 \uC2DC\uAC04");
-		timeLabel24H.setHorizontalAlignment(SwingConstants.CENTER);
-		timeLabel24H.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		timeLabel24H.setBounds(130, 330, 75, 30);
-		chargePanel.add(timeLabel24H);
-		
-		JLabel timeLabel30D = new JLabel("120 시간");
-		timeLabel30D.setHorizontalAlignment(SwingConstants.CENTER);
-		timeLabel30D.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		timeLabel30D.setBounds(120, 390, 100, 30);
-		chargePanel.add(timeLabel30D);
-		
-		JLabel costLabel1 = new JLabel("3,000\uC6D0");
-		costLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
-		costLabel1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		costLabel1.setBounds(274, 150, 100, 30);
-		chargePanel.add(costLabel1);
-		
-		JLabel lblNewLabel_1_6 = new JLabel("5,000\uC6D0");
-		lblNewLabel_1_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_6.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_6.setBounds(274, 210, 100, 30);
-		chargePanel.add(lblNewLabel_1_6);
-		
-		JLabel lblNewLabel_1_7 = new JLabel("7,000\uC6D0");
-		lblNewLabel_1_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_7.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_7.setBounds(274, 270, 100, 30);
-		chargePanel.add(lblNewLabel_1_7);
-		
-		JLabel lblNewLabel_1_8 = new JLabel("25,000\uC6D0");
-		lblNewLabel_1_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_8.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_8.setBounds(274, 330, 100, 30);
-		chargePanel.add(lblNewLabel_1_8);
-		
-		JLabel lblNewLabel_1_9 = new JLabel("110,000\uC6D0");
-		lblNewLabel_1_9.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1_9.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_9.setBounds(274, 390, 100, 30);
-		chargePanel.add(lblNewLabel_1_9);
-		
-		
-		JLabel lblNewLabel_1_10 = new JLabel(member.getName()+"님");
-		lblNewLabel_1_10.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_10.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_10.setBounds(484, 229, 100, 30);
-		chargePanel.add(lblNewLabel_1_10);
-		
-		JLabel lblNewLabel_1_11 = new JLabel("남은 시간 : ");
-		lblNewLabel_1_11.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1_11.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_11.setBounds(484, 299, 120, 30);
-		chargePanel.add(lblNewLabel_1_11);
-		
-		JLabel lblNewLabel_1_11_1 = new JLabel(get_confirmation.getUser_time()+"분");
-		lblNewLabel_1_11_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_11_1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_11_1.setBounds(571, 299, 100, 30);
-		chargePanel.add(lblNewLabel_1_11_1);
-	
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("3000");
-		rdbtnNewRadioButton.setBounds(382, 156, 21, 23);
-		rdbtnNewRadioButton.addActionListener(new ActionListener() {
+
+		JLabel charge_lb = new JLabel("시간 충전");
+		charge_lb.setBounds(0, 60, 784, 60);
+		charge_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
+		charge_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		chargePanel.add(charge_lb);
+
+		JLabel time2H_lb = new JLabel("2 시간");
+		time2H_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		time2H_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		time2H_lb.setBounds(130, 150, 75, 30);
+		chargePanel.add(time2H_lb);
+
+		JLabel time4H_lb = new JLabel("4 시간");
+		time4H_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		time4H_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		time4H_lb.setBounds(130, 210, 75, 30);
+		chargePanel.add(time4H_lb);
+
+		JLabel time6H_lb = new JLabel("6 시간");
+		time6H_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		time6H_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		time6H_lb.setBounds(130, 270, 75, 30);
+		chargePanel.add(time6H_lb);
+
+		JLabel time24H_lb = new JLabel("24 시간");
+		time24H_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		time24H_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		time24H_lb.setBounds(130, 330, 75, 30);
+		chargePanel.add(time24H_lb);
+
+		JLabel time120H_lb = new JLabel("120 시간");
+		time120H_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		time120H_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		time120H_lb.setBounds(120, 390, 100, 30);
+		chargePanel.add(time120H_lb);
+
+		JLabel cost1_lb = new JLabel("3,000 원");
+		cost1_lb.setHorizontalAlignment(SwingConstants.RIGHT);
+		cost1_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		cost1_lb.setBounds(274, 150, 100, 30);
+		chargePanel.add(cost1_lb);
+
+		JLabel cost2_lb = new JLabel("5,000 원");
+		cost2_lb.setHorizontalAlignment(SwingConstants.RIGHT);
+		cost2_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		cost2_lb.setBounds(274, 210, 100, 30);
+		chargePanel.add(cost2_lb);
+
+		JLabel cost3_lb = new JLabel("7,000 원");
+		cost3_lb.setHorizontalAlignment(SwingConstants.RIGHT);
+		cost3_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		cost3_lb.setBounds(274, 270, 100, 30);
+		chargePanel.add(cost3_lb);
+
+		JLabel cost4_lb = new JLabel("25,000 원");
+		cost4_lb.setHorizontalAlignment(SwingConstants.RIGHT);
+		cost4_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		cost4_lb.setBounds(274, 330, 100, 30);
+		chargePanel.add(cost4_lb);
+
+		JLabel cost5_lb = new JLabel("110,000 원");
+		cost5_lb.setHorizontalAlignment(SwingConstants.RIGHT);
+		cost5_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		cost5_lb.setBounds(274, 390, 100, 30);
+		chargePanel.add(cost5_lb);
+
+		JLabel userName_lb = new JLabel(member.getName() + "님");
+		userName_lb.setHorizontalAlignment(SwingConstants.LEFT);
+		userName_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		userName_lb.setBounds(484, 229, 100, 30);
+		chargePanel.add(userName_lb);
+
+		JLabel remain_lb = new JLabel("남은 시간 : ");
+		remain_lb.setHorizontalAlignment(SwingConstants.LEFT);
+		remain_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		remain_lb.setBounds(484, 299, 120, 30);
+		chargePanel.add(remain_lb);
+
+		JLabel userTime_lb = new JLabel(get_confirmation.getUser_time() + "분");
+		userTime_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		userTime_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		userTime_lb.setBounds(571, 299, 100, 30);
+		chargePanel.add(userTime_lb);
+
+		JRadioButton cost1_rdbtn = new JRadioButton("3000");
+		cost1_rdbtn.setBounds(382, 156, 21, 23);
+		cost1_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNewRadioButton.isSelected()){
-					fee=Integer.parseInt(rdbtnNewRadioButton.getText());
-					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
-		            price = db.select_price(120);
+				if (cost1_rdbtn.isSelected()) {
+					fee = Integer.parseInt(cost1_rdbtn.getText());
+					fee_lb.setText("총계 : " + fee + "원");
+					price = db.select_price(120);
 
 				}
 			}
 		});
-		chargePanel.add(rdbtnNewRadioButton);
-		
-			
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("5000");
-		rdbtnNewRadioButton_1.setBounds(382, 210, 21, 23);
-		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+		chargePanel.add(cost1_rdbtn);
+
+		JRadioButton cost2_rdbtn = new JRadioButton("5000");
+		cost2_rdbtn.setBounds(382, 210, 21, 23);
+		cost2_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNewRadioButton_1.isSelected()){
-					fee=Integer.parseInt(rdbtnNewRadioButton_1.getText());
-					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+				if (cost2_rdbtn.isSelected()) {
+					fee = Integer.parseInt(cost2_rdbtn.getText());
+					fee_lb.setText("총계 : " + fee + "원");
 					price = db.select_price(240);
 				}
 			}
 		});
-		chargePanel.add(rdbtnNewRadioButton_1);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("7000");
-		rdbtnNewRadioButton_2.setBounds(382, 270, 21, 23);
-		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
+		chargePanel.add(cost2_rdbtn);
+
+		JRadioButton cost3_rdbtn = new JRadioButton("7000");
+		cost3_rdbtn.setBounds(382, 270, 21, 23);
+		cost3_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNewRadioButton_2.isSelected()){
-					fee=Integer.parseInt(rdbtnNewRadioButton_2.getText());
-					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+				if (cost3_rdbtn.isSelected()) {
+					fee = Integer.parseInt(cost3_rdbtn.getText());
+					fee_lb.setText("총계 : " + fee + "원");
 					price = db.select_price(360);
 				}
 			}
 		});
-		chargePanel.add(rdbtnNewRadioButton_2);
-		
-		JRadioButton rdbtnNewRadioButton_3 = new JRadioButton("25000");
-		rdbtnNewRadioButton_3.setBounds(382, 330, 21, 23);
-		rdbtnNewRadioButton_3.addActionListener(new ActionListener() {
+		chargePanel.add(cost3_rdbtn);
+
+		JRadioButton cost4_rdbtn = new JRadioButton("25000");
+		cost4_rdbtn.setBounds(382, 330, 21, 23);
+		cost4_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNewRadioButton_3.isSelected()){
-					fee=Integer.parseInt(rdbtnNewRadioButton_3.getText());
-					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+				if (cost4_rdbtn.isSelected()) {
+					fee = Integer.parseInt(cost4_rdbtn.getText());
+					fee_lb.setText("총계 : " + fee + "원");
 					price = db.select_price(1440);
 				}
 			}
 		});
-		chargePanel.add(rdbtnNewRadioButton_3);
-		
-		JRadioButton rdbtnNewRadioButton_4 = new JRadioButton("110000");
-		rdbtnNewRadioButton_4.setBounds(382, 390, 21, 23);
-		rdbtnNewRadioButton_4.addActionListener(new ActionListener() {
+		chargePanel.add(cost4_rdbtn);
+
+		JRadioButton cost5_rdbtn = new JRadioButton("110000");
+		cost5_rdbtn.setBounds(382, 390, 21, 23);
+		cost5_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(rdbtnNewRadioButton_4.isSelected()){
-					fee=Integer.parseInt(rdbtnNewRadioButton_4.getText());
-					lblNewLabel_1_12_1.setText("총계 : "+fee+"원");
+				if (cost5_rdbtn.isSelected()) {
+					fee = Integer.parseInt(cost5_rdbtn.getText());
+					fee_lb.setText("총계 : " + fee + "원");
 					price = db.select_price(7200);
 				}
 			}
 		});
-		chargePanel.add(rdbtnNewRadioButton_4);
-		
+		chargePanel.add(cost5_rdbtn);
+
 		ButtonGroup bg = new ButtonGroup();
-		bg.add(rdbtnNewRadioButton);
-		bg.add(rdbtnNewRadioButton_1);
-		bg.add(rdbtnNewRadioButton_2);
-		bg.add(rdbtnNewRadioButton_3);
-		bg.add(rdbtnNewRadioButton_4);
-		
-		
-		lblNewLabel_1_12_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_12_1.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		lblNewLabel_1_12_1.setBounds(460, 369, 180, 30);
-		chargePanel.add(lblNewLabel_1_12_1);
-		
-		if(rdbtnNewRadioButton.isSelected()){
-			fee=Integer.parseInt(rdbtnNewRadioButton.getText());
+		bg.add(cost1_rdbtn);
+		bg.add(cost2_rdbtn);
+		bg.add(cost3_rdbtn);
+		bg.add(cost4_rdbtn);
+		bg.add(cost5_rdbtn);
+
+		fee_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		fee_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		fee_lb.setBounds(460, 369, 180, 30);
+		chargePanel.add(fee_lb);
+
+		if (cost1_rdbtn.isSelected()) {
+			fee = Integer.parseInt(cost1_rdbtn.getText());
 			System.out.println(fee);
-		}else if( rdbtnNewRadioButton_1.isSelected()){
-			fee=Integer.parseInt(rdbtnNewRadioButton_1.getText());
-			lblNewLabel_1_12_1.getText();
-		}else if( rdbtnNewRadioButton_2.isSelected()){
-			fee=Integer.parseInt(rdbtnNewRadioButton_2.getText());
-			lblNewLabel_1_12_1.getText();
-		}else if( rdbtnNewRadioButton_3.isSelected()){
-			fee=Integer.parseInt(rdbtnNewRadioButton_3.getText());
-			lblNewLabel_1_12_1.getText();
-		}else if( rdbtnNewRadioButton_4.isSelected()){
-			fee=Integer.parseInt(rdbtnNewRadioButton_4.getText());
-			lblNewLabel_1_12_1.getText();
+		} else if (cost2_rdbtn.isSelected()) {
+			fee = Integer.parseInt(cost2_rdbtn.getText());
+			fee_lb.getText();
+		} else if (cost3_rdbtn.isSelected()) {
+			fee = Integer.parseInt(cost3_rdbtn.getText());
+			fee_lb.getText();
+		} else if (cost4_rdbtn.isSelected()) {
+			fee = Integer.parseInt(cost4_rdbtn.getText());
+			fee_lb.getText();
+		} else if (cost5_rdbtn.isSelected()) {
+			fee = Integer.parseInt(cost5_rdbtn.getText());
+			fee_lb.getText();
 		}
-		
-		JButton btnCancel = new JButton("취소");
-		btnCancel.setBounds(130, 454, 105, 27);
-		btnCancel.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		btnCancel.addActionListener(new ActionListener() {
+
+		JButton cancel_btn = new JButton("취소");
+		cancel_btn.setBounds(130, 454, 105, 27);
+		cancel_btn.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		cancel_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chargeFrame.setVisible(false);
 			}
 		});
-		chargePanel.add(btnCancel);
-	
-		JButton btnPay = new JButton("결제하기");
-		btnPay.setBounds(505, 454, 170, 27);
-		btnPay.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
-		btnPay.addActionListener(new ActionListener() {
+		chargePanel.add(cancel_btn);
+
+		JButton pay_btn = new JButton("결제하기");
+		pay_btn.setBounds(505, 454, 170, 27);
+		pay_btn.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
+		pay_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(null,"총 금액 : "+fee		
-				+"        결제 후 보유 시간 : "+(get_confirmation.getUser_time()+price.getTime())+"분"
-				+"        결제 하시겠습니까?","Confirm",JOptionPane.YES_NO_CANCEL_OPTION);
-				if(result == JOptionPane.YES_OPTION) {//예를 누른 경우
+				int result = JOptionPane.showConfirmDialog(
+						null, "총 금액 : " + fee + "        결제 후 보유 시간 : "
+								+ (get_confirmation.getUser_time() + price.getTime()) + "분" + "        결제 하시겠습니까?",
+						"Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
+				if (result == JOptionPane.YES_OPTION) {// 예를 누른 경우
 					price.getPrice();
-					Payment payment = new Payment(user_Id,price.getTime());
+					Payment payment = new Payment(user_Id, price.getTime());
 					db.payment_Insert(payment);
 					db.c_joincheck(user_Id);
-					Confirmation confirmation = new Confirmation(123,user_Id,get_confirmation.getUser_time()+price.getTime());
-					if(db.flag1) {
+					Confirmation confirmation = new Confirmation(123, user_Id,
+							get_confirmation.getUser_time() + price.getTime());
+					if (db.flag1) {
 						db.confirmation_Update(confirmation);
-					}
-					else
+					} else
 						db.confirmation_Insert(confirmation);
 					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다.");
 					chargeFrame.setVisible(false);
 				}
 			}
 		});
-		chargePanel.add(btnPay);
-		
-	}
-	}
+		chargePanel.add(pay_btn);
 
-	
+	}
+}

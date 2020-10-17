@@ -17,8 +17,8 @@ import models.Member;
 public class LoginPage {
 
 	private JFrame loginFrame;
-	JTextField textId = new JTextField();
-	JPasswordField textPassword = new JPasswordField();
+	JTextField id_tf = new JTextField();
+	JPasswordField password_tf = new JPasswordField();
 
 	public LoginPage() {
 		initialize();
@@ -40,31 +40,31 @@ public class LoginPage {
 		loginPanel.setVisible(true);
 		loginPanel.setLayout(null);
 
-		JLabel labeltext = new JLabel("열공 스터디 카페");
-		labeltext.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
-		labeltext.setHorizontalAlignment(SwingConstants.CENTER);
-		labeltext.setBounds(200, 80, 400, 60);
-		loginPanel.add(labeltext);
+		JLabel title_lb = new JLabel("열공 스터디 카페");
+		title_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
+		title_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		title_lb.setBounds(200, 80, 400, 60);
+		loginPanel.add(title_lb);
 
-		JLabel labelId = new JLabel("I D");
-		labelId.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
-		labelId.setHorizontalAlignment(SwingConstants.CENTER);
-		labelId.setBounds(159, 208, 97, 29);
-		loginPanel.add(labelId);
+		JLabel id_lb = new JLabel("I D");
+		id_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
+		id_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		id_lb.setBounds(159, 208, 97, 29);
+		loginPanel.add(id_lb);
 
-		textId.setBounds(295, 208, 178, 30);
-		loginPanel.add(textId);
-		textId.setColumns(10);
+		id_tf.setBounds(295, 208, 178, 30);
+		loginPanel.add(id_tf);
+		id_tf.setColumns(10);
 
-		textPassword.setColumns(10);
-		textPassword.setBounds(295, 268, 178, 30);
-		loginPanel.add(textPassword);
+		password_tf.setColumns(10);
+		password_tf.setBounds(295, 268, 178, 30);
+		loginPanel.add(password_tf);
 
-		JLabel labelPassword = new JLabel("Password");
-		labelPassword.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
-		labelPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		labelPassword.setBounds(159, 269, 97, 27);
-		loginPanel.add(labelPassword);
+		JLabel password_lb = new JLabel("Password");
+		password_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
+		password_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		password_lb.setBounds(159, 269, 97, 27);
+		loginPanel.add(password_lb);
 
 		JButton btnCancel = new JButton("취소");
 		btnCancel.setBounds(300, 342, 105, 27);
@@ -74,12 +74,12 @@ public class LoginPage {
 			}
 		});
 		
-		JLabel check = new JLabel("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
-		check.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
-		check.setHorizontalAlignment(SwingConstants.CENTER);
-		check.setBounds(245, 305, 400, 30);
-		check.setVisible(false);
-		loginPanel.add(check);
+		JLabel fault_lb = new JLabel("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
+		fault_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 15));
+		fault_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		fault_lb.setBounds(245, 305, 400, 30);
+		fault_lb.setVisible(false);
+		loginPanel.add(fault_lb);
 		
 		loginPanel.add(btnCancel);
 		JButton btnLogin = new JButton("로그인");
@@ -89,13 +89,13 @@ public class LoginPage {
 			public void actionPerformed(ActionEvent e) {
 				DB db = new DB();
 				Member member = new Member();
-				member = db.check(textId.getText(),textPassword.getText());
+				member = db.check(id_tf.getText(),password_tf.getText());
 				
 				if(db.flag) {
 					System.out.println("로그인 성공");
 					System.out.println(member.getId());
 					SeatPage seatpage = new SeatPage(member.getId());
-					if(textId.getText().equals("admin")&&textPassword.getText().equals("tntjr123emd")) {
+					if(id_tf.getText().equals("admin")&&password_tf.getText().equals("tntjr123emd")) {
 						seatpage.btnCheckout.setVisible(false);
 						seatpage.btnCharge.setVisible(false);
 						seatpage.btnFee_m.setVisible(true);
@@ -103,7 +103,7 @@ public class LoginPage {
 					}
 					loginFrame.setVisible(false);
 				}else {
-					check.setVisible(true);
+					fault_lb.setVisible(true);
 					
 					System.out.println("로그인 실패");
 				}

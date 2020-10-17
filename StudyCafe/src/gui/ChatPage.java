@@ -21,29 +21,29 @@ public class ChatPage {
 		chatFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		chatFrame.getContentPane().setLayout(null);
 		
-		JLabel labelName = new JLabel("전체 접속자");
-		labelName.setBounds(25, 31, 102, 18);
-		chatFrame.getContentPane().add(labelName);
+		JLabel user_lb = new JLabel("전체 접속자");
+		user_lb.setBounds(25, 31, 102, 18);
+		chatFrame.getContentPane().add(user_lb);
 		
-		JList list = new JList();
-		list.setBounds(25, 53, 86, 139);
-		chatFrame.getContentPane().add(list);
+		JList user_List = new JList();
+		user_List.setBounds(25, 53, 86, 139);
+		chatFrame.getContentPane().add(user_List);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(125, 31, 486, 389);
-		chatFrame.getContentPane().add(scrollPane);
+		JScrollPane scroll_pane = new JScrollPane();
+		scroll_pane.setBounds(125, 31, 486, 389);
+		chatFrame.getContentPane().add(scroll_pane);
 		
-		JTextField textChattingScreen = new JTextField();
-		scrollPane.setViewportView(textChattingScreen);
-		textChattingScreen.setColumns(10);
+		JTextField chatting_tf = new JTextField();
+		scroll_pane.setViewportView(chatting_tf);
+		chatting_tf.setColumns(10);
 		
-		JTextField textSend = new JTextField("메세지를 입력하세요");
-		textSend.setBounds(125, 431, 386, 24);
-		chatFrame.getContentPane().add(textSend);
-		textSend.setColumns(10);
+		JTextField send_tf = new JTextField("메세지를 입력하세요");
+		send_tf.setBounds(125, 431, 386, 24);
+		chatFrame.getContentPane().add(send_tf);
+		send_tf.setColumns(10);
 		
-		JButton btnSend = new JButton("전송");
-		btnSend.setBounds(518, 430, 92, 27);
-		chatFrame.getContentPane().add(btnSend);
+		JButton btnsend = new JButton("전송");
+		btnsend.setBounds(518, 430, 92, 27);
+		chatFrame.getContentPane().add(btnsend);
 	}
 }

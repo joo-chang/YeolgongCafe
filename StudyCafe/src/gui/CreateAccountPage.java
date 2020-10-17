@@ -40,43 +40,43 @@ public class CreateAccountPage {
       createAccountPanel.setVisible(true);
       createAccountPanel.setLayout(null);
 
-      JLabel labelName = new JLabel("이름");
-      labelName.setBounds(262, 103, 111, 35);
-      creatAccountFrame.getContentPane().add(labelName);
-      createAccountPanel.add(labelName);
+      JLabel name_lb = new JLabel("이름");
+      name_lb.setBounds(262, 103, 111, 35);
+      creatAccountFrame.getContentPane().add(name_lb);
+      createAccountPanel.add(name_lb);
 
-      JLabel labelId = new JLabel("I D");
-      labelId.setBounds(262, 169, 62, 18);
-      creatAccountFrame.getContentPane().add(labelId);
-      createAccountPanel.add(labelId);
+      JLabel id_lb = new JLabel("I D");
+      id_lb.setBounds(262, 169, 62, 18);
+      creatAccountFrame.getContentPane().add(id_lb);
+      createAccountPanel.add(id_lb);
 
-      JLabel labelPassword = new JLabel("Password");
-      labelPassword.setBounds(262, 229, 98, 18);
-      createAccountPanel.add(labelPassword);
+      JLabel password_lb = new JLabel("Password");
+      password_lb.setBounds(262, 229, 98, 18);
+      createAccountPanel.add(password_lb);
 
-      JLabel labelBirth = new JLabel("생년월일");
-      labelBirth.setBounds(262, 289, 62, 18);
-      createAccountPanel.add(labelBirth);
+      JLabel birth_lb = new JLabel("생년월일");
+      birth_lb.setBounds(262, 289, 62, 18);
+      createAccountPanel.add(birth_lb);
 
-      JLabel labelEmail = new JLabel("email");
-      labelEmail.setBounds(262, 345, 98, 18);
-      createAccountPanel.add(labelEmail);
+      JLabel email_lb = new JLabel("email");
+      email_lb.setBounds(262, 345, 98, 18);
+      createAccountPanel.add(email_lb);
 
-      JLabel labelAccount = new JLabel("회원가입");
-      labelAccount.setFont(new Font("휴먼엑스포", Font.PLAIN, 30));
-      labelAccount.setHorizontalAlignment(SwingConstants.CENTER);
-      labelAccount.setBounds(303, 34, 168, 44);
-      createAccountPanel.add(labelAccount);
+      JLabel account_lb = new JLabel("회원가입");
+      account_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 30));
+      account_lb.setHorizontalAlignment(SwingConstants.CENTER);
+      account_lb.setBounds(303, 34, 168, 44);
+      createAccountPanel.add(account_lb);
 
-      JTextField textName = new JTextField();
-      textName.setBounds(355, 108, 116, 24);
-      createAccountPanel.add(textName);
-      textName.setColumns(10);
+      JTextField name_tf = new JTextField();
+      name_tf.setBounds(355, 108, 116, 24);
+      createAccountPanel.add(name_tf);
+      name_tf.setColumns(10);
 
-      JTextField textId = new JTextField();
-      textId.setBounds(355, 166, 116, 24);
-      createAccountPanel.add(textId);
-      textId.setColumns(10);
+      JTextField id_tf = new JTextField();
+      id_tf.setBounds(355, 166, 116, 24);
+      createAccountPanel.add(id_tf);
+      id_tf.setColumns(10);
 
       JButton btnIdCheck = new JButton("중복확인");
       btnIdCheck.setBounds(493, 165, 105, 27);
@@ -84,7 +84,7 @@ public class CreateAccountPage {
       btnIdCheck.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             DB db = new DB();
-            db.joincheck(textId.getText());
+            db.joincheck(id_tf.getText());
             duplicate = true;
             if (db.flag1) {
                JOptionPane.showMessageDialog(null, "이미 가입되어 있는 ID입니다.");
@@ -94,20 +94,20 @@ public class CreateAccountPage {
          }
       });
 
-      JPasswordField textPassword = new JPasswordField();
-      textPassword.setBounds(355, 226, 116, 24);
-      createAccountPanel.add(textPassword);
-      textPassword.setColumns(10);
+      JPasswordField password_pf = new JPasswordField();
+      password_pf.setBounds(355, 226, 116, 24);
+      createAccountPanel.add(password_pf);
+      password_pf.setColumns(10);
 
-      JTextField textBirth = new JTextField();
-      textBirth.setBounds(355, 286, 116, 24);
-      createAccountPanel.add(textBirth);
-      textBirth.setColumns(10);
+      JTextField birth_tf = new JTextField();
+      birth_tf.setBounds(355, 286, 116, 24);
+      createAccountPanel.add(birth_tf);
+      birth_tf.setColumns(10);
 
-      JTextField textEmail = new JTextField();
-      textEmail.setBounds(355, 342, 167, 24);
-      createAccountPanel.add(textEmail);
-      textEmail.setColumns(10);
+      JTextField email_tf = new JTextField();
+      email_tf.setBounds(355, 342, 167, 24);
+      createAccountPanel.add(email_tf);
+      email_tf.setColumns(10);
 
       JButton btnJoin = new JButton("가입하기");
       btnJoin.setBounds(417, 411, 105, 27);
@@ -116,25 +116,25 @@ public class CreateAccountPage {
          public void actionPerformed(ActionEvent e) {
             DB db = new DB();
 
-            if (textName.getText().equals("")) {
+            if (name_tf.getText().equals("")) {
                JOptionPane.showMessageDialog(null, "이름을 입력해주세요.");
-            } else if (textId.getText().equals("")) {
+            } else if (id_tf.getText().equals("")) {
                JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.");
-            } else if (textPassword.getText().equals("")) {
+            } else if (password_pf.getText().equals("")) {
                JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.");
-            } else if (textBirth.getText().equals("")) {
+            } else if (birth_tf.getText().equals("")) {
                JOptionPane.showMessageDialog(null, "생일을 입력해주세요.");
-            } else if (textEmail.getText().equals("")) {
+            } else if (email_tf.getText().equals("")) {
                JOptionPane.showMessageDialog(null, "이메일을 입력해주세요.");
             } else {
-               db.joincheck(textId.getText());
+               db.joincheck(id_tf.getText());
                if (db.flag1) {
                   JOptionPane.showMessageDialog(null, "아이디 중복 확인을 해주세요.");
                } else if(!duplicate){
                   JOptionPane.showMessageDialog(null, "아이디  중복 확인을 해주세요.");
                }else {
-                  Member member = new Member(textName.getText(), textId.getText(), textPassword.getText(),
-                        textBirth.getText(), textEmail.getText());
+                  Member member = new Member(name_tf.getText(), id_tf.getText(), password_pf.getText(),
+                        birth_tf.getText(), email_tf.getText());
                   db.member_Insert(member);
                   JOptionPane.showMessageDialog(null, "회원 가입이 완료되었습니다.");
                   creatAccountFrame.setVisible(false);

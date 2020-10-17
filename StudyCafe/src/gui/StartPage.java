@@ -50,11 +50,11 @@ public class StartPage {
 		startFrame.getContentPane().add(startPanel);
 		startPanel.setLayout(null);
 
-		JLabel titleLabel = new JLabel("열공 스터디 카페");
-		titleLabel.setBounds(200, 80, 400, 60);
-		titleLabel.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		startPanel.add(titleLabel);
+		JLabel title_lb = new JLabel("열공 스터디 카페");
+		title_lb.setBounds(200, 80, 400, 60);
+		title_lb.setFont(new Font("휴먼엑스포", Font.PLAIN, 40));
+		title_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		startPanel.add(title_lb);
 
 		JButton btnLogin = new JButton("로그인");
 		btnLogin.setBounds(250, 200, 300, 50);
