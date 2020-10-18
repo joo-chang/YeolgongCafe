@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import database.DB;
 import models.Member;
 
-public class SeatPage {
+public class SeatPage extends DB {
 
 	public JFrame seatFrame;
 	public JButton btnCheckout = new JButton("Åð½ÇÇÏ±â");
@@ -24,10 +24,10 @@ public class SeatPage {
 
 	SeatPage() {}
 	
-	DB db= new DB();
+
 	Member member = new Member();
 	public SeatPage(String user_Id) {
-		member = db.select_Name(user_Id);
+		member = select_Name(user_Id);
 		System.out.println(member.getName());
 		System.out.println(user_Id);
 		initialize(user_Id);

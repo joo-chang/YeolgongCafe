@@ -19,7 +19,7 @@ import models.Member;
 import models.Payment;
 import models.Price;
 
-public class ChargePage {
+public class ChargePage extends DB{
 	private int fee;
 	private JFrame chargeFrame;
 	JLabel fee_lb = new JLabel("총     계 : " + fee + " 원");
@@ -31,11 +31,9 @@ public class ChargePage {
 
 	}
 
-	DB db = new DB();
-
 	public ChargePage(String user_Id) {
-		member = db.select_Name(user_Id);
-		get_confirmation = db.select_Usertime(user_Id);
+		member = select_Name(user_Id);
+		get_confirmation = select_Usertime(user_Id);
 		initialize(user_Id);
 	}
 
@@ -143,7 +141,7 @@ public class ChargePage {
 				if (cost1_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost1_rdbtn.getText());
 					fee_lb.setText("총     계 : " + fee + " 원");
-					price = db.select_price(120);
+					price = select_price(120);
 
 				}
 			}
@@ -157,7 +155,7 @@ public class ChargePage {
 				if (cost2_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost2_rdbtn.getText());
 					fee_lb.setText("총     계 : " + fee + " 원");
-					price = db.select_price(240);
+					price = select_price(240);
 				}
 			}
 		});
@@ -170,7 +168,7 @@ public class ChargePage {
 				if (cost3_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost3_rdbtn.getText());
 					fee_lb.setText("총     계 : " + fee + " 원");
-					price = db.select_price(360);
+					price = select_price(360);
 				}
 			}
 		});
@@ -183,7 +181,7 @@ public class ChargePage {
 				if (cost4_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost4_rdbtn.getText());
 					fee_lb.setText("총     계 : " + fee + " 원");
-					price = db.select_price(1440);
+					price = select_price(1440);
 				}
 			}
 		});
@@ -196,7 +194,7 @@ public class ChargePage {
 				if (cost5_rdbtn.isSelected()) {
 					fee = Integer.parseInt(cost5_rdbtn.getText());
 					fee_lb.setText("총     계 : " + fee + " 원");
-					price = db.select_price(7200);
+					price = select_price(7200);
 				}
 			}
 		});
@@ -252,14 +250,14 @@ public class ChargePage {
 				if (result == JOptionPane.YES_OPTION) {// 예를 누른 경우
 					price.getPrice();
 					Payment payment = new Payment(user_Id, price.getTime());
-					db.payment_Insert(payment);
-					db.c_joincheck(user_Id);
+					payment_Insert(payment);
+					c_joincheck(user_Id);
 					Confirmation confirmation = new Confirmation(123, user_Id,
 							get_confirmation.getUser_time() + price.getTime());
-					if (db.flag1) {
-						db.confirmation_Update(confirmation);
+					if (flag1) {
+						confirmation_Update(confirmation);
 					} else
-						db.confirmation_Insert(confirmation);
+						confirmation_Insert(confirmation);
 					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다.");
 					chargeFrame.setVisible(false);
 				}

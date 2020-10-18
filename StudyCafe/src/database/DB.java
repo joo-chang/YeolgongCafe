@@ -27,6 +27,10 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	//Insert 영역
+	
 	public void member_Insert(Member member) {
 		String sql ="insert into members values(?,?,?,?,?)";
 		try {
@@ -44,6 +48,41 @@ public class DB {
 			e.printStackTrace();
 		}
 	}
+	public void payment_Insert(Payment payment) { 
+
+		String sql ="insert into payment(m_id,time)values(?,?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
+		try {
+			PreparedStatement pmt =conn.prepareStatement(sql);
+			pmt.setString(1,payment.getM_id() );
+			pmt.setInt(2, payment.getTime());//외래키..?db.Id처럼..
+
+			pmt.executeUpdate();
+			pmt.close();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void confirmation_Insert(Confirmation confirmation) {
+		String sql ="insert into confirmation values(?, ? ,?)"; 
+		try {
+			PreparedStatement pmt =conn.prepareStatement(sql);
+			pmt.setInt(1, 1234); //인증번호 변경해야함
+			pmt.setString(2, confirmation.getM_id());
+			pmt.setInt(3, confirmation.getUser_time());
+			pmt.executeUpdate();
+			pmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	//Select 영역
 	
 	public void select_Member() { //매출
 		try {
@@ -163,40 +202,8 @@ public class DB {
 			
 		}
 	}
-	public void confirmation_Insert(Confirmation confirmation) {
-		String sql ="insert into confirmation values(?, ? ,?)"; 
-		try {
-			PreparedStatement pmt =conn.prepareStatement(sql);
-			pmt.setInt(1, 1234); //인증번호 변경해야함
-			pmt.setString(2, confirmation.getM_id());
-			pmt.setInt(3, confirmation.getUser_time());
-			pmt.executeUpdate();
-			pmt.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			
-		}
-	}
-	public void payment_Insert(Payment payment) { 
 
-		String sql ="insert into payment(m_id,time)values(?,?)"; // (생략) 결제번호 (자동생성), id, pay_day,time
-		try {
-			PreparedStatement pmt =conn.prepareStatement(sql);
-			pmt.setString(1,payment.getM_id() );
-			pmt.setInt(2, payment.getTime());//외래키..?db.Id처럼..
 
-			pmt.executeUpdate();
-			pmt.close();
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			//
-		}
-	}
 	 public Price select_price(int num) {
 	      Price s_price = new Price();
 	      try {

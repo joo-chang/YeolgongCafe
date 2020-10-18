@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import database.DB;
 import models.Member;
 
-public class LoginPage {
+public class LoginPage extends DB{
 
 	private JFrame loginFrame;
 	JTextField id_tf = new JTextField();
@@ -87,11 +87,10 @@ public class LoginPage {
 		btnLogin.setBounds(512, 208, 117, 90);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DB db = new DB();
 				Member member = new Member();
-				member = db.check(id_tf.getText(),password_tf.getText());
+				member = check(id_tf.getText(),password_tf.getText());
 				
-				if(db.flag) {
+				if(flag) {
 					System.out.println("로그인 성공");
 					System.out.println(member.getId());
 					SeatPage seatpage = new SeatPage(member.getId());

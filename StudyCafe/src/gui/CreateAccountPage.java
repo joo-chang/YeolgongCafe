@@ -16,7 +16,7 @@ import models.Member;
 
 import javax.swing.JButton;
 
-public class CreateAccountPage {
+public class CreateAccountPage extends DB{
 
    private JFrame creatAccountFrame;
    boolean duplicate = false;
@@ -83,10 +83,9 @@ public class CreateAccountPage {
       createAccountPanel.add(btnIdCheck);
       btnIdCheck.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            DB db = new DB();
-            db.joincheck(id_tf.getText());
+            joincheck(id_tf.getText());
             duplicate = true;
-            if (db.flag1) {
+            if (flag1) {
                JOptionPane.showMessageDialog(null, "이미 가입되어 있는 ID입니다.");
             } else {
                JOptionPane.showMessageDialog(null, "가입 가능한 ID입니다.");
