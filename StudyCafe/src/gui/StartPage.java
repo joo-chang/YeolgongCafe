@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import database.DB;
 
-public class StartPage {
+public class StartPage extends DB {
 
 	private JFrame startFrame;
 
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,11 +31,9 @@ public class StartPage {
 		});
 	}
 
-
 	public StartPage() {
 		initialize();
 	}
-
 
 	private void initialize() {
 		startFrame = new JFrame();
@@ -81,13 +79,18 @@ public class StartPage {
 		btnEnter.setFont(new Font("휴먼엑스포", Font.PLAIN, 16));
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int accept = Integer.parseInt(JOptionPane.showInputDialog("인증 번호를 입력하세요."));
-				if(accept==1234) {
-					JOptionPane.showMessageDialog(null,"문이 열립니다.");	
-				}else JOptionPane.showMessageDialog(null,"인증번호가 틀리거나 유효하지 않습니다.");	
+				String num = JOptionPane.showInputDialog("인증 번호를 입력하세요.");
+				if (confirm_check(num)) {
+					JOptionPane.showMessageDialog(null, "문이 열립니다.");
+					confirm = false;
+				} else  
+					JOptionPane.showMessageDialog(null, "인증번호가 틀리거나 유효하지 않습니다.");
+				
 			}
-		});
+		}
+		);
 		startPanel.add(btnEnter);
 
-	}
-}//
+	}}
+
+//

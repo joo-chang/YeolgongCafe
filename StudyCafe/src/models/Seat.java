@@ -1,31 +1,27 @@
 package models;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Seat {
 	private int seatnumber;
+	private String m_id;
+	private boolean status;
 	public int getSeatnumber() {
 		return seatnumber;
 	}
 	public void setSeatnumber(int seatnumber) {
 		this.seatnumber = seatnumber;
 	}
-	public int getPosition() {
-		return position;
+	public String getM_id() {
+		return m_id;
 	}
-	public void setPosition(int position) {
-		this.position = position;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
-	private int position;
-	
-BufferedReader in =new BufferedReader(new InputStreamReader(System.in));
-	
-	public Seat() throws IOException {
-		System.out.println("ÁÂ¼®¹øÈ£");
-		seatnumber=in.read();
-		System.out.println("ÁÂ¼®À§Ä¡");
-		position=in.read();
-	
+	public boolean isStatus() {
+		return status;
 	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+
 }

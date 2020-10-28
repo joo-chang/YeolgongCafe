@@ -19,12 +19,12 @@ import models.Member;
 import models.Payment;
 import models.Price;
 
-public class ChargePage extends DB{
+public class ChargePage extends DB {
 	private int fee;
 	private JFrame chargeFrame;
 	JLabel fee_lb = new JLabel("총     계 : " + fee + " 원");
 	Price price = new Price();
-	Confirmation get_confirmation = new Confirmation();
+	Confirmation confirmation = new Confirmation();
 	Member member = new Member();
 
 	ChargePage() {
@@ -33,7 +33,7 @@ public class ChargePage extends DB{
 
 	public ChargePage(String user_Id) {
 		member = select_Name(user_Id);
-		get_confirmation = select_Usertime(user_Id);
+		confirmation = select_Usertime(user_Id);
 		initialize(user_Id);
 	}
 
@@ -128,7 +128,7 @@ public class ChargePage extends DB{
 		remain_lb.setBounds(484, 299, 120, 30);
 		chargePanel.add(remain_lb);
 
-		JLabel userTime_lb = new JLabel(changeTime(get_confirmation.getUser_time()));
+		JLabel userTime_lb = new JLabel(changeTime(confirmation.getUser_time()));
 		userTime_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		userTime_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		userTime_lb.setBounds(567, 299, 150, 30);
@@ -211,23 +211,6 @@ public class ChargePage extends DB{
 		fee_lb.setBounds(484, 369, 220, 30);
 		chargePanel.add(fee_lb);
 
-		if (cost1_rdbtn.isSelected()) {
-			fee = Integer.parseInt(cost1_rdbtn.getText());
-			System.out.println(fee);
-		} else if (cost2_rdbtn.isSelected()) {
-			fee = Integer.parseInt(cost2_rdbtn.getText());
-			fee_lb.getText();
-		} else if (cost3_rdbtn.isSelected()) {
-			fee = Integer.parseInt(cost3_rdbtn.getText());
-			fee_lb.getText();
-		} else if (cost4_rdbtn.isSelected()) {
-			fee = Integer.parseInt(cost4_rdbtn.getText());
-			fee_lb.getText();
-		} else if (cost5_rdbtn.isSelected()) {
-			fee = Integer.parseInt(cost5_rdbtn.getText());
-			fee_lb.getText();
-		}
-
 		JButton cancel_btn = new JButton("취소");
 		cancel_btn.setBounds(130, 454, 105, 27);
 		cancel_btn.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
@@ -243,37 +226,39 @@ public class ChargePage extends DB{
 		pay_btn.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		pay_btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(
-						null, "총 금액 : " + fee + "        결제 후 보유 시간 : "
-								+ (get_confirmation.getUser_time() + price.getTime()) + "분" + "        결제 하시겠습니까?",
+				int result = JOptionPane.showConfirmDialog(null, "총 금액 : " + fee + "        결제 후 보유 시간 : "
+						+ (changeTime(confirmation.getUser_time() + price.getTime())) + "        결제 하시겠습니까?",
 						"Confirm", JOptionPane.YES_NO_CANCEL_OPTION);
 				if (result == JOptionPane.YES_OPTION) {// 예를 누른 경우
 					price.getPrice();
 					Payment payment = new Payment(user_Id, price.getTime());
 					payment_Insert(payment);
 					c_joincheck(user_Id);
-					Confirmation confirmation = new Confirmation(123, user_Id,
-							get_confirmation.getUser_time() + price.getTime());
+					confirmation.setConfirm_number(confirmation.excuteNumber());
+					confirmation.setM_id(user_Id);
+					confirmation.setUser_time(confirmation.getUser_time() + price.getTime());
 					if (flag1) {
 						confirmation_Update(confirmation);
-					} else
+					} else {
 						confirmation_Insert(confirmation);
-					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다.");
+					}
+					select_Confirm_n(user_Id);
+					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다. 인증번호 : "+confirm_number);
 					chargeFrame.setVisible(false);
 				}
 			}
 		});
 		chargePanel.add(pay_btn);
 	}
-	
-	//분단위 시간단위로 바꾸기
-	public String changeTime(int time) {
-		int hour=0;
-		int minute=0;
 
-		hour=time/60;
-		minute =time%60;
-	
-		return hour+" 시간  "+minute+" 분";
+	// 분단위 시간단위로 바꾸기
+	public String changeTime(int time) {
+		int hour = 0;
+		int minute = 0;
+
+		hour = time / 60;
+		minute = time % 60;
+
+		return hour + " 시간  " + minute + " 분";
 	}
 }
