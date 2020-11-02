@@ -21,7 +21,6 @@ public class SeatPage extends DB {
 
 	SeatPage() {}
 	
-
 	Member member = new Member();
 	public SeatPage(String user_Id) {
 		member = select_Name(user_Id);

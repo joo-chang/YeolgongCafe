@@ -85,32 +85,37 @@ public class ChargePage extends DB {
 		time120H_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		time120H_lb.setBounds(120, 390, 100, 30);
 		chargePanel.add(time120H_lb);
-
-		JLabel cost1_lb = new JLabel("3,000 원");
+		
+		price = select_price(120);
+		JLabel cost1_lb = new JLabel(price.getPrice()+" 원");
 		cost1_lb.setHorizontalAlignment(SwingConstants.RIGHT);
 		cost1_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		cost1_lb.setBounds(274, 150, 100, 30);
 		chargePanel.add(cost1_lb);
-
-		JLabel cost2_lb = new JLabel("5,000 원");
+		
+		price = select_price(240);
+		JLabel cost2_lb = new JLabel(price.getPrice()+" 원");
 		cost2_lb.setHorizontalAlignment(SwingConstants.RIGHT);
 		cost2_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		cost2_lb.setBounds(274, 210, 100, 30);
 		chargePanel.add(cost2_lb);
-
-		JLabel cost3_lb = new JLabel("7,000 원");
+		
+		price = select_price(360);
+		JLabel cost3_lb = new JLabel(price.getPrice()+" 원");
 		cost3_lb.setHorizontalAlignment(SwingConstants.RIGHT);
 		cost3_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		cost3_lb.setBounds(274, 270, 100, 30);
 		chargePanel.add(cost3_lb);
-
-		JLabel cost4_lb = new JLabel("25,000 원");
+		
+		price = select_price(1440);
+		JLabel cost4_lb = new JLabel(price.getPrice()+" 원");
 		cost4_lb.setHorizontalAlignment(SwingConstants.RIGHT);
 		cost4_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		cost4_lb.setBounds(274, 330, 100, 30);
 		chargePanel.add(cost4_lb);
-
-		JLabel cost5_lb = new JLabel("110,000 원");
+		
+		price = select_price(7200);
+		JLabel cost5_lb = new JLabel(price.getPrice()+" 원");
 		cost5_lb.setHorizontalAlignment(SwingConstants.RIGHT);
 		cost5_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		cost5_lb.setBounds(274, 390, 100, 30);
@@ -133,8 +138,9 @@ public class ChargePage extends DB {
 		userTime_lb.setFont(new Font("한컴 백제 M", Font.PLAIN, 20));
 		userTime_lb.setBounds(567, 299, 150, 30);
 		chargePanel.add(userTime_lb);
-
-		JRadioButton cost1_rdbtn = new JRadioButton("3000");
+		
+		price = select_price(120);
+		JRadioButton cost1_rdbtn = new JRadioButton(price.getPrice()+"");
 		cost1_rdbtn.setBounds(382, 156, 21, 23);
 		cost1_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -147,8 +153,9 @@ public class ChargePage extends DB {
 			}
 		});
 		chargePanel.add(cost1_rdbtn);
-
-		JRadioButton cost2_rdbtn = new JRadioButton("5000");
+		
+		price = select_price(240);
+		JRadioButton cost2_rdbtn = new JRadioButton(price.getPrice()+"");
 		cost2_rdbtn.setBounds(382, 210, 21, 23);
 		cost2_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,8 +167,9 @@ public class ChargePage extends DB {
 			}
 		});
 		chargePanel.add(cost2_rdbtn);
-
-		JRadioButton cost3_rdbtn = new JRadioButton("7000");
+		
+		price = select_price(360);
+		JRadioButton cost3_rdbtn = new JRadioButton(price.getPrice()+"");
 		cost3_rdbtn.setBounds(382, 270, 21, 23);
 		cost3_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -173,8 +181,9 @@ public class ChargePage extends DB {
 			}
 		});
 		chargePanel.add(cost3_rdbtn);
-
-		JRadioButton cost4_rdbtn = new JRadioButton("25000");
+		
+		price = select_price(1440);
+		JRadioButton cost4_rdbtn = new JRadioButton(price.getPrice()+"");
 		cost4_rdbtn.setBounds(382, 330, 21, 23);
 		cost4_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -186,8 +195,9 @@ public class ChargePage extends DB {
 			}
 		});
 		chargePanel.add(cost4_rdbtn);
-
-		JRadioButton cost5_rdbtn = new JRadioButton("110000");
+		
+		price = select_price(7200);
+		JRadioButton cost5_rdbtn = new JRadioButton(price.getPrice()+"");
 		cost5_rdbtn.setBounds(382, 390, 21, 23);
 		cost5_rdbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
