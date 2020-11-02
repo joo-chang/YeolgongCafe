@@ -253,7 +253,8 @@ public class ChargePage extends DB {
 						confirmation_Insert(confirmation);
 					}
 					select_Confirm_n(user_Id);
-					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다. 인증번호 : "+confirm_number);
+//					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다. 인증번호 : "+confirm_number);
+					new ReceiptPage();
 					chargeFrame.setVisible(false);
 				}
 			}

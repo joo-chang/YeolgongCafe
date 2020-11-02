@@ -42,6 +42,7 @@ public class StartPage extends DB {
 		startFrame.setLocationRelativeTo(null);
 		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		startFrame.getContentPane().setLayout(null);
+		
 
 		JPanel startPanel = new JPanel(); // startPanel
 		startPanel.setBounds(0, 0, 784, 561);
