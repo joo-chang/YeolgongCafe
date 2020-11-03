@@ -24,7 +24,7 @@ public class DB {
 	public String confirm_number;
 
 	public DB() {
-		String url = "jdbc:mysql://172.30.1.48:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
+		String url = "jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "studycafe";
 		String password = "tntjr123emd";
 		try {
@@ -156,6 +156,7 @@ public class DB {
 			ResultSet rs = stm.executeQuery(sql);
 			while (rs.next()) {
 				if (rs.getString(2).equals(id)) {
+					confirmation.setM_id(id);
 					confirmation.setUser_time(rs.getInt(3));
 				}
 			}
@@ -369,6 +370,10 @@ public class DB {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void confirm_remainTime(String id) {
+		
 	}
 
 

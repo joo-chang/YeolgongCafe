@@ -73,9 +73,7 @@ public class testGUI extends DB{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				confirm.setM_id(user_Id);
-				
-				confirm.setUser_time(th.timeStop());
+				th.timeStop();
 			}
 		});
 		frame.getContentPane().add(btnNewButton);
@@ -169,14 +167,16 @@ public class testGUI extends DB{
 			total = hour*60 + minute;
 			if(total == 0 ){
 				db.confirm_timeout(id);// 시간이 0이면 confirmation 에서 아예 지워야 함
+			}else{
+				conf.setUser_time(total);
+				db.confirmation_Update(conf);
 			}
 			System.out.println("시간 종료");
 			
 		}
 
-		public int timeStop() {
+		public void timeStop() {
 			stopT = true;
-			return total;
 		}
 	}
 
