@@ -24,7 +24,7 @@ public class DB {
 	public String confirm_number;
 
 	public DB() {
-		String url = "jdbc:mysql://192.168.0.14:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
+		String url = "jdbc:mysql://192.168.0.168:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "studycafe";
 		String password = "tntjr123emd";
 		try {

@@ -47,14 +47,6 @@ public class SalePage extends JFrame implements MouseListener, ActionListener {
    
 
    public void initialize() {
-
-//      v = db.print_sale();
-//      v =db.print_sale_sum();
-      String Date = "2020";
-      v = db.print_sale_byDate(Date);
-      System.out.println("v=" + v);
-      heading = getColumn();
-//      heading = getColumn_sum();
       model = new DefaultTableModel(v, heading);
       getContentPane().setLayout(null);
       setBounds(100, 100, 800, 600);
@@ -75,6 +67,10 @@ public class SalePage extends JFrame implements MouseListener, ActionListener {
       JButton btnNewButton = new JButton("전체 매출");
       btnNewButton.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent arg0) {
+        	 v=db.print_sale();
+        	 System.out.println("v="+v);
+        	 heading=getColumn();
+        	 initialize();
          }
       });
       btnNewButton.setBounds(14, 600, 105, 44);
@@ -83,10 +79,10 @@ public class SalePage extends JFrame implements MouseListener, ActionListener {
       JButton button = new JButton("월별 총매출");
       button.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-        	 
-        	 v=db.print_sale_byDate(Date);
+        	 v =db.print_sale_sum();
         	 System.out.println("v="+v);
         	 heading=getColumn_sum();
+        	 initialize();
          }
       });
       button.setBounds(133, 600, 105, 44);
@@ -114,14 +110,18 @@ public class SalePage extends JFrame implements MouseListener, ActionListener {
 
       JLabel lblNewLabel_2 = new JLabel("일");
       jp_btn.add(lblNewLabel_2);
+      
+     
 
       JButton btnNewButton_1 = new JButton("검색");
       btnNewButton_1.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-        	 String Date="";
+        	 String Date=textField_3.getText()+"-"+textField_4.getText()+"-"+textField_5.getText();
+        	 System.out.println(Date);
          	 v=db.print_sale_byDate(Date);
          	 System.out.println("v="+v);
          	 heading=getColumn();
+         	 initialize();
           }
        });
       jp_btn.add(btnNewButton_1);

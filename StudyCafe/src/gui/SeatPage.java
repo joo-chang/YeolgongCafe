@@ -22,7 +22,7 @@ public class SeatPage extends DB {
 	public JButton btnCharge = new JButton("시간충전");
 	public JButton btnSales_m = new JButton("매출관리");
 	public JButton btnFee_m = new JButton("요금관리");
-
+	JButton btnSeat3 = new JButton("3");
 	SeatPage() {
 	}
 
@@ -109,6 +109,7 @@ public class SeatPage extends DB {
 						Seat seat = new Seat(1, user_Id);
 						use_seat(seat);
 						btnSeat1.setBackground(Color.red);
+						btnSeat1.setEnabled(flag);
 					} else {
 						JOptionPane.showMessageDialog(null, "시간을 충전해주세요");
 					}
@@ -142,10 +143,10 @@ public class SeatPage extends DB {
 		btnSeat2.setBounds(106, 160, 50, 40);
 		seatPanel.add(btnSeat2);
 
-		JButton btnSeat3 = new JButton("3");
+
 		btnSeat3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				total_method();
+				total_method(3,user_Id);
 			}
 		});
 		btnSeat3.setBounds(106, 215, 50, 40);
@@ -300,7 +301,19 @@ public class SeatPage extends DB {
 
 	}
 
-	public void total_method() {
-
+	public void total_method(int num, String user_Id) {
+		check_userseat(user_Id);
+		if (flag1) {
+			check_usertime(user_Id);
+			if (flag1) {
+				Seat seat = new Seat(num, user_Id);
+				use_seat(seat);
+				btnSeat3.setBackground(Color.red);
+			} else {
+				JOptionPane.showMessageDialog(null, "시간을 충전해주세요");
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "이미 사용중인 좌석이 있습니다.");
+		}
 	}
 }
