@@ -14,7 +14,7 @@ import models.Payment;
 import models.Price;
 import models.Receipt;
 import models.Sale;
-
+import models.Seat;
 
 public class DB {
 	private Connection conn; // 2. Connection 객체를 생성
@@ -24,7 +24,7 @@ public class DB {
 	public String confirm_number;
 
 	public DB() {
-		String url = "jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
+		String url = "jdbc:mysql://192.168.0.14:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "studycafe";
 		String password = "tntjr123emd";
 		try {
@@ -213,7 +213,8 @@ public class DB {
 
 		}
 	}
-	public void price_Update(int a,int b) {
+
+	public void price_Update(int a, int b) {
 		String sql = "update price set price = ? where time= ?";
 		try {
 			PreparedStatement pmt = conn.prepareStatement(sql);
@@ -285,84 +286,149 @@ public class DB {
 		return confirm;
 	}
 
+	public Vector print_sale_byDate(String Date) {
+		@SuppressWarnings("rawtypes")
+		Vector saledata = new Vector();
 
-	public Vector print_sale() {
-		Vector saledata=new Vector();
-		
 		try {
-		String sql = "select  DATE_FORMAT(payment.pay_day, '%Y-%m-%d') as 결제일, payment.m_id as 회원 ,payment.time, price.price as 결제금액 \r\n"
-				+ "from payment,price,members\r\n"
-				+ "where payment.time=price.time and members.id =payment.m_id \r\n" + "order by payment.pay_day";
-		Statement stm = conn.createStatement();
-		ResultSet rs = stm.executeQuery(sql);
-		
-		while(rs.next()) {
-			String pay_day=rs.getString(1);
-			String m_id=rs.getString(2);
-			String pay_time=rs.getString(3);
-			String price=rs.getString(4);
-			
-			Vector row=new Vector();
-			row.add(pay_day);
-			row.add(m_id);
-			row.add(pay_time);
-			row.add(price);
-			
-			saledata.add(row);
-		}
-		}catch(SQLException e) {
+			String sql = "select distinct DATE_FORMAT(payment.pay_day, '%Y-%m-%d') day, confirmation.confirm_number, payment.m_id as 회원 , price.price as 결제금액 \r\n"
+					+ "from payment,price,members,confirmation\r\n"
+					+ "where payment.time=price.time and members.id =payment.m_id and confirmation.m_id=members.id and payment.pay_day like '"
+					+ Date + "%'  order by payment.pay_day";
+			PreparedStatement pmt = conn.prepareStatement(sql);
+//			pmt.setString(1, Date);
+			System.out.println(Date);
+//	         System.out.println(keyword);
+			Statement stm = conn.createStatement();
+			ResultSet rs = pmt.executeQuery(sql);
+
+			while (rs.next()) {
+				String pay_day = rs.getString(1);
+				String m_id = rs.getString(2);
+				String pay_time = rs.getString(3);
+				String price = rs.getString(4);
+
+				Vector row = new Vector();
+				row.add(pay_day);
+				row.add(m_id);
+				row.add(pay_time);
+				row.add(price);
+
+				saledata.add(row);
+			}
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return saledata;
-		
-		
+
+	}
+
+	public Vector print_sale() {
+		Vector saledata = new Vector();
+
+		try {
+			String sql = "select  DATE_FORMAT(payment.pay_day, '%Y-%m-%d') as 결제일, payment.m_id as 회원 ,payment.time, price.price as 결제금액 \r\n"
+					+ "from payment,price,members\r\n"
+					+ "where payment.time=price.time and members.id =payment.m_id \r\n" + "order by payment.pay_day";
+			Statement stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+
+			while (rs.next()) {
+				String pay_day = rs.getString(1);
+				String m_id = rs.getString(2);
+				String pay_time = rs.getString(3);
+				String price = rs.getString(4);
+
+				Vector row = new Vector();
+				row.add(pay_day);
+				row.add(m_id);
+				row.add(pay_time);
+				row.add(price);
+
+				saledata.add(row);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return saledata;
+
 	}
 
 	public Vector print_receipt() {
-		
-		Vector data=new Vector();
+
+		Vector data = new Vector();
 
 		try {
-			String sql="select distinct members.name as 회원이름 , DATE_FORMAT(payment.pay_day, '%Y-%m-%d') as 결제일, payment.time as 충전시간 , confirmation.user_time as 남은시간, confirmation.confirm_number as 인증번호, price.price as '결제 금액'\r\n" + 
-					"from payment,price,members,confirmation\r\n" + 
-					"where payment.time=price.time and members.id = payment.m_id and members.id = confirmation.m_id  \r\n" + 
-					"order by 결제일  desc limit 1";
-			PreparedStatement pmt=conn.prepareStatement(sql);
+			String sql = "select distinct members.name as 회원이름 , DATE_FORMAT(payment.pay_day, '%Y-%m-%d') as 결제일, payment.time as 충전시간 , confirmation.user_time as 남은시간, confirmation.confirm_number as 인증번호, price.price as '결제 금액'\r\n"
+					+ "from payment,price,members,confirmation\r\n"
+					+ "where payment.time=price.time and members.id = payment.m_id and members.id = confirmation.m_id  \r\n"
+					+ "order by 결제일  desc limit 1";
+			PreparedStatement pmt = conn.prepareStatement(sql);
 //			pmt.setString(1, m_id);
-			ResultSet rs= pmt.executeQuery();
-			
-			while(rs.next()) {
-				String name=rs.getString(1);
-				String pay_day=rs.getString(2);
-				String buy_time=rs.getString(3);
-				String rest_time=rs.getString(4);
-				String confirm_number=rs.getString(5);
-				String price=rs.getString(6);
-				
-				Vector row=new Vector();
+			ResultSet rs = pmt.executeQuery();
+
+			while (rs.next()) {
+				String name = rs.getString(1);
+				String pay_day = rs.getString(2);
+				String buy_time = rs.getString(3);
+				String rest_time = rs.getString(4);
+				String confirm_number = rs.getString(5);
+				String price = rs.getString(6);
+
+				Vector row = new Vector();
 				row.add(name);
 				row.add(pay_day);
 				row.add(buy_time);
 				row.add(rest_time);
 				row.add(confirm_number);
 				row.add(price);
-				
+
 				data.add(row);
 			}
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-						e.printStackTrace();
+			e.printStackTrace();
 		}
-		
+
 		return data;
 	}
-	public void confirm_timeout(String id){
+
+	public Vector print_sale_sum() {
+		Vector saledata = new Vector();
+
+		try {
+			String sql = "select DATE_FORMAT(payment.pay_day, '%Y-%m-%d') as 결제일 ,sum(price.price) as 총결제금액\r\n"
+					+ "from payment,price\r\n" + "where payment.time=price.time\r\n" + "group by 결제일\r\n"
+					+ "order by payment.pay_day";
+			Statement stm = conn.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+
+			while (rs.next()) {
+				String pay_day = rs.getString(1);
+				String price = rs.getString(2);
+
+				Vector row = new Vector();
+				row.add(pay_day);
+				row.add(price);
+
+				saledata.add(row);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return saledata;
+
+	}
+
+	public void confirm_timeout(String id) {
 		try {
 			String sql = "delete from confirmation where m_id=?";
 			PreparedStatement pmt = conn.prepareStatement(sql);
-			pmt.setString(1, id);  
+			pmt.setString(1, id);
 			pmt.executeUpdate();
 			pmt.close();
 		} catch (SQLException e) {
@@ -373,8 +439,63 @@ public class DB {
 	}
 
 	public void confirm_remainTime(String id) {
-		
+
 	}
 
+	public boolean check_userseat(String m_id) { // 회원이 이미 이용중인 좌석이 있는지 확인
+		try {
+			Statement stm = conn.createStatement();
+			String sql = "select m_id from seat";
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString(1).equals(m_id)) {
+					System.out.println("이용중인 좌석이 있습니다.");
+					flag1 = true;
+				} else {
+					System.out.println("이용 가능");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag1;
+	}
+
+	public boolean check_usertime(String m_id) {// 회원의 시간이 남아 있는지 확인
+		try {
+			Statement stm = conn.createStatement();
+			String sql = "select * from confirmation";
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.getString(2).equals(m_id)) {
+				if (rs.getString(3).equals(0)) {
+					System.out.println("이용가능한 시간이 없습니다.");
+				} else {
+					System.out.println("이용 가능");
+					flag1 = true;
+
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag1;
+
+	}
+
+	public void use_seat(Seat seat) { // 선택한 좌석을 회원이름과 true값으로 바꾼다.
+		String sql = "update seat set status =1, m_id=?  where seatnumber=?";
+		try {
+			PreparedStatement pmt = conn.prepareStatement(sql);
+			pmt.setString(1, seat.getM_id());
+			pmt.setInt(2, seat.getSeatnumber());
+			pmt.execute();
+			pmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
