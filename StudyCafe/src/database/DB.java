@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import models.Confirmation;
@@ -22,9 +24,10 @@ public class DB {
 	public boolean flag1 = false;
 	public boolean confirm = false;
 	public String confirm_number;
+	public boolean flag3 = false;
 
 	public DB() {
-		String url = "jdbc:mysql://192.168.0.168:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
+		String url = "jdbc:mysql://localhost:3306/studycafe?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "studycafe";
 		String password = "tntjr123emd";
 		try {
@@ -291,14 +294,12 @@ public class DB {
 		Vector saledata = new Vector();
 
 		try {
-			String sql = "select distinct DATE_FORMAT(payment.pay_day, '%Y-%m-%d') day, confirmation.confirm_number, payment.m_id as 회원 , price.price as 결제금액 \r\n"
+			String sql = "select distinct DATE_FORMAT(payment.pay_day, '%Y-%m-%d') day, payment.m_id as 회원,payment.time , price.price as 결제금액 \r\n"
 					+ "from payment,price,members,confirmation\r\n"
 					+ "where payment.time=price.time and members.id =payment.m_id and confirmation.m_id=members.id and payment.pay_day like '"
 					+ Date + "%'  order by payment.pay_day";
 			PreparedStatement pmt = conn.prepareStatement(sql);
-//			pmt.setString(1, Date);
 			System.out.println(Date);
-//	         System.out.println(keyword);
 			Statement stm = conn.createStatement();
 			ResultSet rs = pmt.executeQuery(sql);
 
@@ -496,6 +497,63 @@ public class DB {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public boolean check_seatboolean() {
+		try {
+			Statement stm = conn.createStatement();
+			String sql = "select * from seat";
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString(3).equals(1)) {
+					flag3 = true;
+
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag3;
+	}
+
+	public String dbmail(String user_Id) {
+		String confirmation;
+		String email = null;
+		try {
+			Statement stm = conn.createStatement();
+			String sql = "select members.id, members.email, confirmation.confirm_number from members, confirmation where members.id=confirmation.m_id;";
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString(1).equals(user_Id)) {
+					email = rs.getString(2);
+					confirmation = rs.getString(3);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return email;
+
+	}
+	public boolean seat_status() {
+		boolean status=false;
+		Statement stm;
+		try {
+			stm = conn.createStatement();
+			String sql = "select * from seat";
+			ResultSet rs = stm.executeQuery(sql);
+			while(rs.next()) {
+				if(rs.getString(3).equals(1)) {
+					status=true;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return status;
 	}
 
 }
