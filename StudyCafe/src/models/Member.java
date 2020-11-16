@@ -2,58 +2,71 @@ package models;
 
 public class Member {
 
-   private String name;
-   private String id;
-   private String password;
-   private String email;
-   private String birthday;
-   
-   public Member() {}
-   public String getName() {
-      return name;
-   }
+	private String name;
+	private String id;
+	private String password;
+	private String email;
+	private String birthday;
+	private String phone;
 
-   public void setName(String name) {
-      this.name = name;
-   }
+	public String getPhone() {
+		return phone;
+	}
 
-   public String getId() {
-      return id;
-   }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-   public void setId(String id) {
-      this.id = id;
-   }
+	public Member() {
+	}
 
-   public String getPassword() {
-      return password;
-   }
+	public String getName() {
+		return name;
+	}
 
-   public void setPassword(String password) {
-      this.password = password;
-   }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-   public String getEmail() {
-      return email;
-   }
+	public String getId() {
+		return id;
+	}
 
-   public void setEmail(String email) {
-      this.email = email;
-   }
-   public String getBirthday() {
-      return birthday;
-   }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-   public void setBirthday(String birthday) {
-      this.birthday = birthday;
-   }
+	public String getPassword() {
+		return password;
+	}
 
-   public Member(String name, String id, String password, String birthday, String email) {
-      super();
-      this.name = name;
-      this.id = id;
-      this.password = password;
-      this.email = email;
-      this.birthday = birthday;
-   }
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public Member(String name, String id, String password, String birthday, String email, String phone) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.password = password;
+		this.email = email;
+		this.birthday = birthday;
+		this.phone=phone;
+	}
 }

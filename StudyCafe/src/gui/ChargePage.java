@@ -261,7 +261,8 @@ public class ChargePage extends DB {
 					Mail.mail(dbmail(user_Id), confirm_number);
 					System.out.println(confirm_number);
 					select_Confirm_n(user_Id);
-					ss.sendsms("01084219777", confirm_number);
+					ss.sendsms(phone(user_Id), confirm_number);
+					System.out.println(phone(user_Id));
 					
 					
 //					JOptionPane.showMessageDialog(null, "결제가 완료되었습니다. 인증번호 : "+confirm_number);

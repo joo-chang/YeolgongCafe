@@ -41,7 +41,7 @@ public class DB {
 	// Insert 영역
 
 	public void member_Insert(Member member) {
-		String sql = "insert into members values(?,?,?,?,?)";
+		String sql = "insert into members values(?,?,?,?,?,?)";
 		try {
 			PreparedStatement pmt = conn.prepareStatement(sql);
 			pmt.setString(1, member.getName());
@@ -49,6 +49,7 @@ public class DB {
 			pmt.setString(3, member.getPassword());
 			pmt.setString(4, member.getBirthday());
 			pmt.setString(5, member.getEmail());
+			pmt.setString(6, member.getPhone());
 			pmt.executeUpdate();
 			pmt.close();
 
@@ -64,10 +65,8 @@ public class DB {
 			PreparedStatement pmt = conn.prepareStatement(sql);
 			pmt.setString(1, payment.getM_id());
 			pmt.setInt(2, payment.getTime());// 외래키..?db.Id처럼..
-
 			pmt.executeUpdate();
 			pmt.close();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -537,16 +536,35 @@ public class DB {
 		return email;
 
 	}
+	public String phone(String user_Id) {
+		String phone = null;
+		try {
+			Statement stm = conn.createStatement();
+			String sql = "select * from members";
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString(2).equals(user_Id)) {
+					phone = rs.getString(6);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return phone;
+
+	}
+
 	public boolean seat_status() {
-		boolean status=false;
+		boolean status = false;
 		Statement stm;
 		try {
 			stm = conn.createStatement();
 			String sql = "select * from seat";
 			ResultSet rs = stm.executeQuery(sql);
-			while(rs.next()) {
-				if(rs.getString(3).equals(1)) {
-					status=true;
+			while (rs.next()) {
+				if (rs.getString(3).equals(1)) {
+					status = true;
 				}
 			}
 		} catch (SQLException e) {
